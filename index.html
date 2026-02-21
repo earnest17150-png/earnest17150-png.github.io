@@ -492,6 +492,10 @@ footer a:hover::after {
 <body class="font-sans text-gray-800 overflow-x-hidden pb-16 md:pb-0">
 <!-- HEADER -->
 <header class="bg-white border-b sticky top-0 z-50">
+ <div id="menuOverlay"
+class="fixed inset-0 bg-black/40 hidden z-40 md:hidden"
+onclick="toggleMenu()"></div>
+ 
 <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-4">
 <img loading="lazy"
   src="images/eit-logo.svg"
@@ -538,7 +542,7 @@ footer a:hover::after {
 
 <!-- MOBILE MENU -->
 <div id="mobileMenu"
-class="fixed top-0 right-0 h-full w-1/2 max-w-xs bg-white shadow-2xl transform translate-x-full transition duration-300 z-50 md:hidden p-6 space-y-4">
+class="fixed top-0 right-0 h-full w-1/2 max-w-xs bg-white shadow-2xl transform translate-x-full transition duration-300 z-50 md:hidden p-6 flex flex-col gap-4"
 
 <button onclick="toggleMenu()" class="absolute top-4 right-4 text-2xl">×</button>
 
@@ -849,9 +853,9 @@ a1.65 1.65 0 0 0-1.51 1z"/>
   <!-- BUTTONS -->
   <div class="flex flex-col sm:flex-row gap-4 justify-center items-center w-full sm:w-auto">
     <a href="https://wa.me/919842217150"
-       class="w-48 bg-green-500 text-white py-3 rounded-xl font-semibold text-center transition hover:scale-105">
+       class="w-52 bg-green-500 text-white py-3 rounded-xl font-semibold flex items-center justify-center gap-2 transition hover:scale-105">
 
-      <svg width="22" height="22" viewBox="0 0 32 32">
+      <svg width="22" height="22" viewBox="0 0 32 32" class="w-5 h-5 shrink-0">
         <circle cx="16" cy="16" r="16" fill="#16a34a"/>
         <path fill="#ffffff" d="M16 6C10.48 6 6 10.03 6 15c0 2.01.71 3.86 1.9 5.34L6 26l5.9-1.88A10.3 10.3 0 0 0 16 25c5.52 0 10-4.03 10-9s-4.48-10-10-10z"/>
         <path fill="#16a34a" d="M19.7 17.3c-.2-.1-1.1-.5-1.3-.6-.2-.1-.4-.1-.6.1-.2.3-.6.6-.7.8-.2.2-.3.2-.5.1-.3-.1-1-.4-1.9-1.2-.7-.6-1.2-1.3-1.3-1.6-.1-.2 0-.4.1-.5.1-.1.3-.3.4-.4.1-.1.2-.2.2-.4.1-.2 0-.3 0-.4 0-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.8 2.3.9 2.5c.1.2 1.8 2.8 4.3 3.9.6.2 1 .4 1.4.5.6.2 1.1.2 1.5.1.4-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2 0-.1-.2-.2-.4-.3z"/>
@@ -2689,12 +2693,10 @@ document.getElementById(id).classList.remove("shake");
 
 function toggleMenu(){
 const menu = document.getElementById("mobileMenu");
+const overlay = document.getElementById("menuOverlay");
 
-if(menu.classList.contains("translate-x-full")){
-menu.classList.remove("translate-x-full");
-}else{
-menu.classList.add("translate-x-full");
-}
+menu.classList.toggle("translate-x-full");
+overlay.classList.toggle("hidden");
 }
 
 const observer = new IntersectionObserver(entries => {
@@ -2734,7 +2736,7 @@ document.querySelectorAll("section").forEach(section => {
 <div id="brandModal"
      onclick="outsideBrandClick(event)"
      class="fixed inset-0 bg-black/60 hidden items-center justify-center z-50">
-  <div class="bg-white rounded-2xl w-[92%] max-w-md h-[70vh] p-6 relative flex flex-col overflow-hidden">
+  <div class="bg-white rounded-2xl w-[92%] md:w-[90%] max-w-md md:max-w-5xl md:h-auto h-[70vh] p-6 md:p-8 relative flex flex-col overflow-hidden md:overflow-visible">
 
     <!-- CLOSE -->
     <button onclick="closeBrandModal()" class="absolute top-4 right-4 text-gray-500 text-2xl">×</button>
@@ -2742,8 +2744,8 @@ document.querySelectorAll("section").forEach(section => {
     <h3 id="brandTitle" class="text-2xl font-bold mb-6 text-center"></h3>
 
     <!-- PRODUCT GRID -->
-    <div class="overflow-y-auto flex-1 pr-2">
-<div class="grid grid-cols-2 gap-4">
+    <div class="flex-1 overflow-y-auto md:overflow-visible pr-2">
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
 
       <!-- CARD -->
      <div onclick="openMaterial('Rotor Cup')" class="cursor-pointer border rounded-xl p-4 hover:shadow-lg transition text-center">
@@ -2856,7 +2858,7 @@ document.querySelectorAll("section").forEach(section => {
   </div>
 </div>
 
-<div class="fixed bottom-0 left-0 w-full bg-green-600 text-white p-3 flex justify-center md:hidden z-50">
+<div class="fixed bottom-0 left-0 w-full bg-green-600 text-white py-3 flex justify-center md:hidden z-30">
   <a href="https://wa.me/919842217150" class="flex items-center gap-2 font-semibold">
     <svg width="20" height="20" viewBox="0 0 32 32">
       <circle cx="16" cy="16" r="16" fill="#16a34a"/>
@@ -2868,15 +2870,9 @@ document.querySelectorAll("section").forEach(section => {
 <button id="scrollTopBtn"
 class="fixed bottom-24 right-4 bg-blue-600 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center opacity-0 pointer-events-none transition">
 
-<svg xmlns="http://www.w3.org/2000/svg"
-width="22" height="22"
-fill="none"
-stroke="white"
-stroke-width="3"
-viewBox="0 0 24 24">
-<path d="M5 15l7-7 7 7"/>
+<svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="3">
+  <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
 </svg>
-
 </button>
 
 <script>
@@ -2896,6 +2892,7 @@ btn.onclick = () => window.scrollTo({top:0, behavior:"smooth"});
 </body>
 
 </html>
+
 
 
 

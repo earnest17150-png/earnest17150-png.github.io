@@ -541,8 +541,12 @@ onclick="toggleMenu()"></div>
 </div>
 
 <!-- MOBILE MENU -->
-<div id="mobileMenu"
-class="fixed top-0 right-0 h-full w-1/2 max-w-xs bg-white shadow-2xl transform translate-x-full transition duration-300 z-50 md:hidden p-6 flex flex-col gap-4"
+<div id="menuOverlay"
+class="fixed inset-0 bg-black/40 backdrop-blur-sm hidden z-40"
+onclick="toggleMenu()"></div>
+ 
+ <div id="mobileMenu"
+class="fixed top-0 right-0 h-full w-[75%] max-w-xs bg-white shadow-2xl z-50 p-6 flex flex-col gap-6 transform translate-x-full transition duration-300">
 
 <button onclick="toggleMenu()" class="absolute top-4 right-4 text-2xl">×</button>
 
@@ -851,9 +855,9 @@ a1.65 1.65 0 0 0-1.51 1z"/>
   </div>
 
   <!-- BUTTONS -->
-  <div class="flex flex-col sm:flex-row gap-4 justify-center items-center w-full sm:w-auto">
+  <div class="flex flex-col sm:flex-row gap-4 justify-center items-center w-full max-w-sm">
     <a href="https://wa.me/919842217150"
-       class="w-52 bg-green-500 text-white py-3 rounded-xl font-semibold flex items-center justify-center gap-2 transition hover:scale-105">
+       class="bg-green-500 text-white px-6 py-3 rounded-xl font-semibold transition hover:scale-105 w-full flex items-center justify-center gap-2">
 
       <svg width="22" height="22" viewBox="0 0 32 32" class="w-5 h-5 shrink-0">
         
@@ -865,7 +869,7 @@ a1.65 1.65 0 0 0-1.51 1z"/>
     </a>
 
    <a href="#contact"
-   class="w-48 bg-white text-blue-700 py-3 rounded-xl font-semibold text-center shadow transition hover:scale-105">
+   class="bg-white text-blue-700 px-6 py-3 rounded-xl font-semibold shadow transition hover:scale-105 w-full text-center">
   Send Enquiry
 </a>
   </div>
@@ -2692,11 +2696,11 @@ document.getElementById(id).classList.remove("shake");
 });
 
 function toggleMenu(){
-const menu = document.getElementById("mobileMenu");
-const overlay = document.getElementById("menuOverlay");
+  const menu = document.getElementById('mobileMenu');
+  const overlay = document.getElementById('menuOverlay');
 
-menu.classList.toggle("translate-x-full");
-overlay.classList.toggle("hidden");
+  menu.classList.toggle('translate-x-full');
+  overlay.classList.toggle('hidden');
 }
 
 const observer = new IntersectionObserver(entries => {
@@ -2736,7 +2740,7 @@ document.querySelectorAll("section").forEach(section => {
 <div id="brandModal"
      onclick="outsideBrandClick(event)"
      class="fixed inset-0 bg-black/60 hidden items-center justify-center z-50">
-  <div class="bg-white rounded-2xl w-[92%] md:w-[90%] max-w-md md:max-w-5xl md:h-auto h-[70vh] p-6 md:p-8 relative flex flex-col overflow-hidden md:overflow-visible">
+  <div class="bg-white rounded-2xl w-[92%] md:w-[90%] max-w-md md:max-w-5xl md:h-auto h-[75vh] p-6 md:p-8 relative flex flex-col overflow-hidden md:overflow-visible">
 
     <!-- CLOSE -->
     <button onclick="closeBrandModal()" class="absolute top-4 right-4 text-gray-500 text-2xl">×</button>
@@ -2745,7 +2749,7 @@ document.querySelectorAll("section").forEach(section => {
 
     <!-- PRODUCT GRID -->
     <div class="flex-1 overflow-y-auto md:overflow-visible pr-2">
-<div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+<div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
 
       <!-- CARD -->
      <div onclick="openMaterial('Rotor Cup')" class="cursor-pointer border rounded-xl p-4 hover:shadow-lg transition text-center">
@@ -2892,6 +2896,7 @@ btn.onclick = () => window.scrollTo({top:0, behavior:"smooth"});
 </body>
 
 </html>
+
 
 
 

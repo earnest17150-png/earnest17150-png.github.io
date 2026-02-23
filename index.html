@@ -212,12 +212,6 @@ header > div {
   align-items: center;
 }
 
-/* Push nav to center */
-header nav {
-  margin-left: auto;
-  margin-right: auto;
-}
-
 /* Keep buttons to the right */
 header a.bg-green-500,
 header a.bg-blue-600 {
@@ -575,14 +569,14 @@ backdrop-filter: blur(12px);
 <header class="bg-white border-b sticky top-0 z-50">
 
  
-<div class="max-w-7xl mx-auto flex items-center pl-4 pr-2 py-4 gap-6">
+<div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-4">
 <img loading="lazy"
   src="images/eit-logo.svg"
   style="width:240px; max-width:100%; height:auto;"
   alt="Earnest India Trading Company">
 
 <!-- MOBILE MENU BUTTON -->
-<button onclick="toggleMenu()" class="md:hidden relative w-8 h-6 flex flex-col justify-between" id="hamburgerBtn">
+<button onclick="toggleMenu()" class="md:hidden relative w-9 h-6 flex flex-col justify-between ml-auto" id="hamburgerBtn">
 <span class="line block h-0.5 bg-gray-800 rounded"></span>
 <span class="line block h-0.5 bg-gray-800 rounded"></span>
 <span class="line block h-0.5 bg-gray-800 rounded"></span>
@@ -631,15 +625,17 @@ class="fixed top-0 right-0 h-full w-[82%] max-w-sm bg-white shadow-2xl rounded-l
 
 <button onclick="toggleMenu()" class="absolute top-4 right-4 text-2xl">×</button>
 
-<div class="flex flex-col gap-3 text-lg font-medium mt-10 items-start text-left px-6">
-  <a href="#home" onclick="toggleMenu()" class="block py-2.5 w-full border-b border-gray-200 w-full hover:text-blue-600 hover:translate-x-1 transition duration-200">Home</a>
-  <a href="#about" onclick="toggleMenu()" class="block py-2.5 w-full border-b border-gray-200 w-full hover:text-blue-600 hover:translate-x-1 transition duration-200">About</a>
-  <a href="#products" onclick="toggleMenu()" class="block py-2.5 w-full border-b border-gray-200 w-full hover:text-blue-600 hover:translate-x-1 transition duration-200">Products</a>
-  <a href="#services" onclick="toggleMenu()" class="block py-2.5 w-full border-b border-gray-200 w-full hover:text-blue-600 hover:translate-x-1 transition duration-200">Services</a>
-  <a href="#why-us" onclick="toggleMenu()" class="block py-2.5 w-full border-b border-gray-200 w-full hover:text-blue-600 hover:translate-x-1 transition duration-200">Why Us</a>
-  <a href="#contact" onclick="toggleMenu()" class="block py-2.5 w-full border-b border-gray-200 w-full hover:text-blue-600 hover:translate-x-1 transition duration-200">Contact</a>
+<div class="flex flex-col gap-1 text-[17px] font-medium mt-6 px-7">
+  <a href="#home" onclick="toggleMenu()" class="block py-2 w-full border-b border-gray-200 hover:text-blue-600 hover:translate-x-1 transition duration-200">Home</a>
+  <a href="#about" onclick="toggleMenu()" class="block py-2 w-full border-b border-gray-200 hover:text-blue-600 hover:translate-x-1 transition duration-200">About</a>
+  <a href="#products" onclick="toggleMenu()" class="block py-2 w-full border-b border-gray-200 hover:text-blue-600 hover:translate-x-1 transition duration-200">Products</a>
+  <a href="#services" onclick="toggleMenu()" class="block py-2 w-full border-b border-gray-200 hover:text-blue-600 hover:translate-x-1 transition duration-200">Services</a>
+  <a href="#why-us" onclick="toggleMenu()" class="block py-2 w-full border-b border-gray-200 hover:text-blue-600 hover:translate-x-1 transition duration-200">Why Us</a>
+  <a href="#contact" onclick="toggleMenu()" class="block py-2 w-full border-b border-gray-200 hover:text-blue-600 hover:translate-x-1 transition duration-200">Contact</a>
 </div>
-
+  
+<div class="mt-6 space-y-3 px-6">
+ 
 <a href="#contact"
 class="ripple bg-blue-600 text-white py-3 rounded-xl text-center w-full mt-6 font-semibold shadow-md">
 Get Quote
@@ -652,7 +648,7 @@ class="ripple bg-green-500 text-white py-3 rounded-xl text-center w-full font-se
 </svg>
 WhatsApp
 </a>
-  
+</div>
 </div>
 
 </header>
@@ -2990,6 +2986,7 @@ btn.onclick = () => window.scrollTo({top:0, behavior:"smooth"});
 </body>
 
 </html>
+
 
 
 

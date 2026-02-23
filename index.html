@@ -540,15 +540,35 @@ animation: popupEntry .45s cubic-bezier(.34,1.56,.64,1);
 0%{transform:scale(.9);opacity:0}
 100%{transform:scale(1);opacity:1}
 }
+
+  .ripple{
+position:relative;
+overflow:hidden;
+}
+.ripple:after{
+content:"";
+position:absolute;
+width:0;
+height:0;
+background:rgba(255,255,255,.4);
+border-radius:50%;
+transform:translate(-50%,-50%);
+opacity:0;
+}
+.ripple:active:after{
+width:220px;
+height:220px;
+opacity:1;
+transition:.4s;
+}
+ 
 </style>
 </head>
 
 <body class="font-sans text-gray-800 overflow-x-hidden pb-16 md:pb-0">
 <!-- HEADER -->
 <header class="bg-white border-b sticky top-0 z-50">
- <div id="menuOverlay"
-class="fixed inset-0 bg-black/40 hidden z-40 md:hidden"
-onclick="toggleMenu()"></div>
+
  
 <div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-4">
 <img loading="lazy"
@@ -2760,14 +2780,15 @@ document.getElementById(id).classList.remove("shake");
 function toggleMenu(){
   const menu = document.getElementById("mobileMenu");
   const overlay = document.getElementById("menuOverlay");
-document.getElementById("hamburgerBtn").classList.toggle("active");
-  menu.classList.toggle("show");
+  const btn = document.getElementById("hamburgerBtn");
 
-  if(menu.classList.contains("translate-x-full")){
-    overlay.classList.add("opacity-0","pointer-events-none");
-  }else{
-    overlay.classList.remove("opacity-0","pointer-events-none");
-  }
+  btn.classList.toggle("active");
+
+  menu.classList.toggle("show");
+  menu.classList.toggle("translate-x-full");
+
+  overlay.classList.toggle("opacity-0");
+  overlay.classList.toggle("pointer-events-none");
 }
 
 const observer = new IntersectionObserver(entries => {
@@ -2783,27 +2804,7 @@ document.querySelectorAll("section").forEach(section => {
   observer.observe(section);
 });
 
- .ripple{
-position:relative;
-overflow:hidden;
-}
-.ripple:after{
-content:"";
-position:absolute;
-width:0;
-height:0;
-background:rgba(255,255,255,.4);
-border-radius:50%;
-transform:translate(-50%,-50%);
-opacity:0;
-}
-.ripple:active:after{
-width:220px;
-height:220px;
-opacity:1;
-transition:.4s;
-}
- 
+
 </script>
 
 <!-- SUCCESS POPUP -->
@@ -2960,7 +2961,7 @@ transition:.4s;
 </div>
 
 <button id="scrollTopBtn"
-class="fixed bottom-24 right-4 bg-blue-600 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center opacity-0 pointer-events-none transition">
+class="fixed bottom-24 right-4 z-40 bg-blue-600 text-white w-12 h-12 rounded-full shadow-lg flex items-center justify-center opacity-0 pointer-events-none transition">
 
 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="3">
   <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
@@ -2984,6 +2985,7 @@ btn.onclick = () => window.scrollTo({top:0, behavior:"smooth"});
 </body>
 
 </html>
+
 
 
 

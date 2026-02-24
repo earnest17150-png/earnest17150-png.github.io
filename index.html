@@ -583,10 +583,10 @@ backdrop-filter: blur(12px);
   box-shadow:0 6px 16px rgba(0,0,0,.08);
 }
 .menu-icon{
-width:24px;
-height:24px;
-stroke:#64748b;
-stroke-width:2.2;
+width:22px;
+height:22px;
+min-width:22px;
+object-fit:contain;
 transition:.3s;
 }
 
@@ -869,25 +869,17 @@ Products
 </a>
 
 <a href="#services" onclick="toggleMenu()" class="menu-item">
-<svg class="menu-icon" fill="none" viewBox="0 0 24 24">
-<circle cx="12" cy="12" r="3"/>
-<path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82"/>
-</svg>
+<img src="images/nav-icons/customer-service.png" class="menu-icon" alt="">
 Services
 </a>
 
 <a href="#why-us" onclick="toggleMenu()" class="menu-item">
-<svg class="menu-icon" fill="none" viewBox="0 0 24 24">
-<path d="M12 17l-5 3 1.9-5.6L4 10l5.7-.5L12 4l2.3 5.5L20 10l-4.9 4.4L17 20z"/>
-</svg>
+<img src="images/nav-icons/why-us.png" class="menu-icon" alt="">
 Why Us
 </a>
 
 <a href="#contact" onclick="toggleMenu()" class="menu-item">
-<svg class="menu-icon" fill="none" viewBox="0 0 24 24">
-<path d="M22 16.92V21a2 2 0 0 1-2.18 2"/>
-<path d="M16 11a4 4 0 0 1-8 0"/>
-</svg>
+<img src="images/nav-icons/phone.png" class="menu-icon" alt="">
 Contact
 </a>
 
@@ -3355,4 +3347,5 @@ if (loader) {
 </body>
 
 </html>
+
 

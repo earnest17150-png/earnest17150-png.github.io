@@ -979,16 +979,25 @@ class="w-[88%] flex items-center justify-center gap-3 bg-blue-600 text-white py-
 <!-- HERO -->
 <section id="home" class="relative pt-0 md:py-28 overflow-hidden">
 
- <video autoplay muted loop playsinline
-class="absolute inset-0 w-full h-full object-cover blur-2xl scale-110 opacity-40 md:hidden -z-10">
-  <source src="video/hero.mp4" type="video/mp4">
-</video>
- 
-<!-- HERO VIDEO -->
+<!-- 🔥 MOBILE BLUR BACKGROUND -->
 <video autoplay muted loop playsinline
-class="relative w-full object-contain md:object-contain">
+class="absolute inset-0 w-full h-full object-cover blur-2xl scale-110 opacity-40 md:hidden -z-20">
   <source src="video/hero.mp4" type="video/mp4">
 </video>
+
+<!-- 🔥 DESKTOP NORMAL BACKGROUND -->
+<video autoplay muted loop playsinline
+class="absolute inset-0 w-full h-full object-cover hidden md:block -z-20">
+  <source src="video/hero.mp4" type="video/mp4">
+</video>
+
+<!-- 🔥 MOBILE FOREGROUND CENTER VIDEO -->
+<div class="absolute inset-0 flex items-center justify-center md:hidden -z-10">
+  <video autoplay muted loop playsinline
+  class="w-full object-contain scale-105">
+    <source src="video/hero.mp4" type="video/mp4">
+  </video>
+</div>
 
  <div class="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-black/70 to-transparent md:hidden"></div>
 <div class="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/70 to-transparent md:hidden"></div>
@@ -3450,6 +3459,7 @@ if (loader) {
 </body>
 
 </html>
+
 
 
 

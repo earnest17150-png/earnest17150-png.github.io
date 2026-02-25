@@ -978,7 +978,11 @@ class="w-[88%] flex items-center justify-center gap-3 bg-blue-600 text-white py-
 
 <!-- HERO -->
 <section id="home" class="relative overflow-hidden h-[70vh] md:h-auto py-0 md:py-28">
-
+<video autoplay muted loop playsinline 
+class="md:hidden absolute inset-0 w-full h-full object-cover blur-xl scale-125 opacity-70 -z-20">
+  <source src="video/hero.mp4" type="video/mp4">
+</video>
+ 
 <video autoplay muted loop playsinline class="absolute inset-0 w-full h-full object-contain md:object-cover -z-10">
  
   <source src="video/hero.mp4" type="video/mp4">
@@ -993,7 +997,7 @@ class="w-[88%] flex items-center justify-center gap-3 bg-blue-600 text-white py-
 
 <div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 px-6">
 
-<div>
+<div class="text-center md:text-left flex flex-col items-center md:items-start justify-center h-full">
 <p class="text-green-300 text-sm drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">● Trusted Since 1990</p>
 <h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold mt-3 leading-tight tracking-tight drop-shadow-[0_4px_20px_rgba(0,0,0,0.8)]">
 30+ Years<br><span class="text-blue-300 drop-shadow-[0_4px_15px_rgba(0,0,0,0.9)]">of Textile Excellence</span>
@@ -1039,7 +1043,7 @@ Prime dealer of European open-end spares and authorized distributor of premium t
 
 </div>
 
-<div class="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 gap-8 md:gap-16 justify-items-center mt-14 md:mt-0">
+<div class="hidden md:grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 gap-8 md:gap-16 justify-items-center mt-14 md:mt-0">
 
 <!-- Machinery Spares -->
 <div class="feature float">
@@ -3441,6 +3445,7 @@ if (loader) {
 </body>
 
 </html>
+
 
 
 

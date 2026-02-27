@@ -281,7 +281,31 @@ width:24px;
 height:24px;
 object-fit:contain;
 }
+.desc-side{
+display:flex;
+align-items:center;
+justify-content:center;
+gap:12px;
+margin-top:-6px;
+margin-bottom:18px;
+font-size:14px;
+opacity:.9;
+}
 
+.desc-side::before,
+.desc-side::after{
+content:"";
+flex:1;
+max-width:60px;
+height:1.5px;
+background:linear-gradient(90deg,
+transparent,
+#60a5fa,
+#38bdf8,
+transparent);
+border-radius:2px;
+animation:sideGlow 2.5s infinite;
+}
 /* ⭐ glitter line */
 .glitter-line{
 width:160px;
@@ -380,7 +404,7 @@ display:flex;
 align-items:center;
 justify-content:center;
 gap:14px;
-margin:30px 0 15px;
+margin:30px 0 20px;
 font-size:24px;
 font-weight:600;
 }
@@ -389,29 +413,21 @@ font-weight:600;
 .heading-line::after{
 content:"";
 flex:1;
+max-width:90px;
 height:2px;
-max-width:80px;
 background:linear-gradient(90deg,
 transparent,
 #60a5fa,
 #38bdf8,
+white,
+#38bdf8,
+#60a5fa,
 transparent);
-position:relative;
-overflow:hidden;
+border-radius:2px;
+animation:sideGlow 2.5s infinite;
 }
 
-.heading-line::before::after,
-.heading-line::after::after{
-content:"";
-}
-
-/* ✨ moving shine */
-.heading-line::before,
-.heading-line::after{
-animation:sideShine 2.5s infinite;
-}
-
-@keyframes sideShine{
+@keyframes sideGlow{
 0%{opacity:.4;}
 50%{opacity:1;}
 100%{opacity:.4;}
@@ -469,7 +485,7 @@ Catalogue 1
 </div>
 <span>›</span>
 </a>
-<div class="desc-line">
+<div class="desc-side">
    All Type of Ball Bearings
 </div>
 <div class="glitter-line"></div>
@@ -481,7 +497,9 @@ Catalogue 2
 </div>
 <span>›</span>
 </a>
-<div class="desc">OE Spares • Other Textile Spares</div>
+<div class="desc-side">
+   OE Spares • Other Textile Spares
+</div>
 
 <div class="heading-line">
    <span>Why Choose EIT?</span>

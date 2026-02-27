@@ -69,6 +69,30 @@ margin:auto;
 background:#0b254f;
 padding:18px;
 border-radius:14px;
+position:relative;
+overflow:hidden;
+}
+
+.card::before{
+content:"";
+position:absolute;
+top:0;
+left:-120%;
+width:60%;
+height:100%;
+background:linear-gradient(
+120deg,
+transparent,
+rgba(255,255,255,0.25),
+transparent
+);
+transform:skewX(-25deg);
+animation:glitter 4s infinite;
+}
+
+@keyframes glitter{
+0%{left:-120%;}
+100%{left:140%;}
 }
 
 .card img{width:28px;margin-bottom:6px;}

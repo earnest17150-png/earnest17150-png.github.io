@@ -2,6 +2,7 @@
 <html lang="en">
 <head>
 
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
 <script type="application/ld+json">
 {
  "@context": "https://schema.org",
@@ -47,15 +48,24 @@
 
 
 <style>
+html {
+  scroll-behavior: smooth;
+}
+
 html{scroll-behavior:smooth}
 .tab-btn{padding:10px 20px;border-radius:10px;font-size:14px}
 .tab-btn:hover{background:#e0edff}
 .active-tab{background:#2563eb;color:#fff}
 
 .icon-box{
-width:76px;height:76px;border-radius:18px;
-display:flex;align-items:center;justify-content:center;
-box-shadow:0 14px 32px rgba(0,0,0,.15)
+width:82px;
+height:82px;
+border-radius:20px;
+display:flex;
+align-items:center;
+justify-content:center;
+box-shadow:0 20px 45px rgba(0,0,0,.25);
+backdrop-filter: blur(10px);
 }
 .icon-box img,.icon-box svg{width:36px;height:36px}
 
@@ -856,6 +866,26 @@ transform:scale(.8);
   transition: all 0.3s ease;
 }
 
+.glass-btn:hover {
+  transform: translateY(-3px) scale(1.02);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.25);
+}
+
+.glass-btn::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(120deg, transparent, rgba(255,255,255,0.4), transparent);
+  transition: 0.6s;
+}
+
+.glass-btn:hover::after {
+  left: 120%;
+}
+
 .glass-btn:hover{
   transform: translateY(-3px) scale(1.03);
   box-shadow: 0 15px 40px rgba(0,0,0,0.25);
@@ -880,6 +910,21 @@ transform:scale(.8);
   box-shadow:
     0 0 12px rgba(34,197,94,0.6),
     0 0 30px rgba(34,197,94,0.4);
+}
+
+.glass-btn::after {
+  content:"";
+  position:absolute;
+  top:0;
+  left:-100%;
+  width:100%;
+  height:100%;
+  background:linear-gradient(120deg,transparent,rgba(255,255,255,0.4),transparent);
+  transition:0.6s;
+}
+
+.glass-btn:hover::after {
+  left:100%;
 }
 
 .glass-blue{
@@ -926,8 +971,16 @@ transform:scale(.8);
   -webkit-backdrop-filter: blur(14px);
   background: transparent;
   border: 1px solid rgba(255, 255, 255, 0.2);
-
+  display: inline-flex; /* 🔥 THIS FIXES CENTER */
   transition: all 0.3s ease;
+}
+
+#scrollTopBtn {
+  min-width: unset;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border-radius: 999px;
 }
 
 /* GREEN NEON */
@@ -940,10 +993,14 @@ transform:scale(.8);
 
 /* BLUE NEON */
 .glass-blue {
+  background: linear-gradient(135deg, #3b82f6, #2563eb) !important;
+  color: white;
+
   box-shadow:
-    0 0 10px rgba(59,130,246,0.7),
-    0 0 20px rgba(59,130,246,0.5),
-    inset 0 0 10px rgba(255,255,255,0.1);
+    0 0 15px rgba(37,99,235,0.8),
+    0 0 30px rgba(37,99,235,0.6);
+
+  border: none;
 }
 
 /* HOVER EFFECT */
@@ -1070,10 +1127,173 @@ body.no-scroll {
 }
 
 
+
+@keyframes zoomHero {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.005); }
+}
+
+
+.hero-video {
+  animation: zoomHero 18s ease-in-out infinite alternate;
+}
+
+
+
+header {
+  backdrop-filter: blur(12px);
+  background: rgba(255,255,255,0.8);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+}
+
+
+
+body {
+  margin: 0;
+}
+
+.hero-video {
+  animation: zoomHero 18s ease-in-out infinite alternate;
+}
+
+@keyframes zoomHero {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.02); }
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+#home {
+  display: block;
+  line-height: 0;
+}
+
+/* SAME SIZE BUTTON */
+.glass-btn {
+  position: relative;
+  min-width: unset;   /* 🔥 REMOVE FORCE WIDTH */
+  height: 50px;
+
+  display: inline-flex; /* 🔥 THIS FIXES CENTER */
+
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  border-radius: 12px;
+  padding: 0 18px;
+
+  background: rgba(255,255,255,0.08);
+  backdrop-filter: blur(12px);
+  border: 1px solid rgba(255,255,255,0.25);
+
+  color: white;
+  font-weight: 500;
+
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.glass-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.6),
+    transparent
+  );
+  transition: 0.6s;
+}
+
+.glass-btn:hover::before {
+  left: 120%;
+}
+
+/* HOVER SCALE */
+.glass-btn:hover {
+  transform: translateY(-2px);
+}
+
+/* SHINE EFFECT */
+.glass-btn::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 60%;
+  height: 100%;
+  background: linear-gradient(
+    120deg,
+    transparent,
+    rgba(255,255,255,0.6),
+    transparent
+  );
+  transition: 0.6s;
+}
+
+.glass-btn:hover::before {
+  left: 120%;
+}
+
+/* WHATSAPP GREEN */
+.whatsapp-btn {
+  background: rgba(34,197,94,0.9);
+  border: none;
+}
+
+.fade-up {
+  opacity: 0;
+  transform: translateY(30px);
+  animation: fadeUp 1s ease forwards;
+}
+
+@keyframes fadeUp {
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.scroll-animate {
+  opacity: 1; /* 🔥 FIX */
+  transform: translateY(0);
+}
+
+.scroll-animate.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.fade-in-up {
+  opacity: 1; /* 🔥 FIX */
+  transform: translateY(0);
+  transition: all 1s ease;
+}
+
+.fade-in-up.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 </style>
 </head>
 
-<body class="font-sans text-gray-800 overflow-x-hidden pb-16 md:pb-0">
+<body class="font-sans text-gray-800 overflow-x-hidden m-0 p-0">
 
 <div id="loader">
 <div class="loader-logo">
@@ -1085,7 +1305,7 @@ body.no-scroll {
 <header class="bg-white border-b sticky top-0 z-50">
 
  
-<div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-4">
+<div class="max-w-7xl mx-auto flex items-center justify-between px-4 py-3">
 <img loading="lazy"
   src="images/eit-logo.svg"
   style="width:240px; max-width:100%; height:auto;"
@@ -1242,169 +1462,90 @@ class="glass-btn glass-blue ripple w-[88%] flex items-center justify-center gap-
 </header>
 
 <!-- HERO -->
-<section id="home" class="relative pt-0 md:py-28 overflow-hidden">
+<section id="home" class="relative overflow-hidden">
 
-<!-- 🔥 MOBILE BLUR BACKGROUND -->
-<video autoplay muted loop playsinline
-class="absolute inset-0 w-full h-full object-cover blur-2xl scale-110 opacity-40 md:hidden -z-20">
-  <source src="video/hero.mp4" type="video/mp4">
-</video>
-
-<!-- 🔥 DESKTOP NORMAL BACKGROUND -->
-<video autoplay muted loop playsinline
-class="absolute inset-0 w-full h-full object-cover hidden md:block -z-20">
-  <source src="video/hero.mp4" type="video/mp4">
-</video>
-
-<!-- 🔥 MOBILE FOREGROUND CENTER VIDEO -->
-<div class="absolute inset-0 flex items-center justify-center md:hidden -z-10">
+  <!-- MAIN VIDEO -->
   <video autoplay muted loop playsinline
-  class="w-full object-contain scale-105">
+  class="w-full h-auto object-contain block">
     <source src="video/hero.mp4" type="video/mp4">
   </video>
-</div>
 
- <div class="absolute inset-x-0 top-0 h-16 bg-gradient-to-b from-black/70 to-transparent md:hidden"></div>
-<div class="absolute inset-x-0 bottom-0 h-16 bg-gradient-to-t from-black/70 to-transparent md:hidden"></div>
- 
-<div class="absolute inset-0 bg-gradient-to-r from-black/80 via-black/60 to-black/30 -z-10"></div>
+  <div class="absolute inset-0 z-20 
+bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
 
+  <div class="absolute w-96 h-96 bg-blue-500/20 blur-3xl rounded-full -top-20 -left-20 z-0"></div>
+  <div class="absolute w-96 h-96 bg-green-500/20 blur-3xl rounded-full bottom-0 right-0 z-0"></div>
 
-<!-- Decorative Blur Background -->
-<div class="parallax absolute -top-20 -left-20 w-72 h-72 bg-blue-400 opacity-20 blur-3xl rounded-full" data-speed="0.2"></div>
-<div class="parallax absolute -bottom-20 -right-20 w-72 h-72 bg-green-400 opacity-20 blur-3xl rounded-full" data-speed="0.35"></div>
+  <!-- OVERLAY -->
+  <div class="absolute inset-0 z-30 flex items-center translate-y-4">
 
-<div class="max-w-7xl mx-auto grid md:grid-cols-2 gap-12 px-6">
+    <!-- ✅ CENTERED CONTENT NOW -->
+    <div class="max-w-2xl px-6 md:px-10 w-full text-left md:text-left text-center">
 
-<div class="text-center md:text-left flex flex-col items-center md:items-start justify-center mt-1 md:mt-0">
-<p class="text-green-300 text-sm drop-shadow-[0_2px_8px_rgba(0,0,0,0.8)]">● Trusted Since 1990</p>
-<h1 class="text-3xl sm:text-4xl md:text-5xl font-extrabold mt-3 leading-tight tracking-tight drop-shadow-[0_4px_20px_rgba(0,0,0,0.8)]">
-<span class="text-white">30+ Years</span><br><span class="text-blue-300 drop-shadow-[0_4px_15px_rgba(0,0,0,0.9)]">of Textile Excellence</span>
-</h1>
+      <div class="fade-in-up flex flex-col justify-center w-full">
 
+        <p class="text-green-400 text-sm mb-3 tracking-wide">
+          ● Trusted Since 1990
+        </p>
 
+        <h1 class="text-5xl md:text-6xl font-extrabold text-white leading-[1.1] mb-6 tracking-tight drop-shadow-[0_6px_25px_rgba(0,0,0,0.9)]">
+          <span class="text-white">30+ Years</span><br>
+          <span class="text-blue-300 drop-shadow-[0_6px_25px_rgba(0,0,0,0.95)]">
+            of Textile Excellence
+          </span>
+        </h1>	
 
+        <p class="text-gray-300 text-lg md:text-xl mb-10 text-gray-300/90 max-w-xl leading-relaxed mx-auto md:mx-0">
+          Prime dealer of European open-end spares and authorized distributor of premium textile & industrial bearings. Your trusted partner for quality machinery solutions.
+        </p>
 
-<p class="mt-6 max-w-xl text-lg md:text-xl font-medium text-blue-100 leading-relaxed drop-shadow-[0_2px_10px_rgba(0,0,0,0.8)]">
-Prime dealer of European open-end spares and authorized distributor of premium textile & industrial bearings. Your trusted partner for quality machinery solutions.
-</p>
-<!-- HERO BUTTONS -->
-<div class="flex gap-4 mt-8 flex-wrap justify-center md:justify-start w-full max-w-xl">
+        <!-- BUTTONS -->
+        <div class="flex gap-4 mt-10 flex-wrap items-center justify-center md:justify-start w-full max-w-xl">
 
   <!-- View Products -->
-  <a href="#showcase"
-     class="glass-btn glass-white flex-1 min-w-[150px] flex items-center justify-center gap-2 h-12 text-glow-white font-semibold rounded-xl">
-    <span class="text-glow-white">View Products →</span>
+  <a href="#showcase" class="glass-btn">
+    View Products →
   </a>
 
-  <!-- Contact Us -->
-  <a href="#contact"
-     class="glass-btn glass-blue flex-1 min-w-[150px] flex items-center justify-center gap-2 h-12 text-glow-blue font-semibold rounded-xl">
-
+  <!-- Contact -->
+  <a href="#contact" class="glass-btn flex items-center gap-2">
     <svg xmlns="http://www.w3.org/2000/svg" class="w-5 h-5" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-        d="M3 5a2 2 0 012-2h3l2 5-2 1a11 11 0 005 5l1-2 5 2v3a2 2 0 01-2 2h-1C9.716 19 5 14.284 5 8V7a2 2 0 01-2-2z"/>
+      d="M3 5a2 2 0 012-2h3l2 5-2 1a11 11 0 005 5l1-2 5 2v3a2 2 0 01-2 2h-1C9.716 19 5 14.284 5 8V7a2 2 0 01-2-2z"/>
     </svg>
-
-    <span class="text-glow-blue">Contact Us</span>
+    Contact Us
   </a>
 
   <!-- WhatsApp -->
-  <a href="https://wa.me/919842217150"
-     class="glass-btn glass-green flex-1 min-w-[150px] flex items-center justify-center gap-2 h-12 text-glow-green font-semibold rounded-xl">
+<a href="https://wa.me/919842217150" class="glass-btn whatsapp-btn flex items-center gap-2">
 
-    <svg width="22" height="22" viewBox="0 0 32 32">
-      <circle cx="16" cy="16" r="16" fill="#16a34a"/>
-      <path fill="#ffffff" d="M16 6C10.48 6 6 10.03 6 15c0 2.01.71 3.86 1.9 5.34L6 26l5.9-1.88A10.3 10.3 0 0 0 16 25c5.52 0 10-4.03 10-9s-4.48-10-10-10z"/>
-      <path fill="#16a34a" d="M19.7 17.3c-.2-.1-1.1-.5-1.3-.6-.2-.1-.4-.1-.6.1-.2.3-.6.6-.7.8-.2.2-.3.2-.5.1-.3-.1-1-.4-1.9-1.2-.7-.6-1.2-1.3-1.3-1.6-.1-.2 0-.4.1-.5.1-.1.3-.3.4-.4.1-.1.2-.2.2-.4.1-.2 0-.3 0-.4 0-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.8 2.3.9 2.5c.1.2 1.8 2.8 4.3 3.9.6.2 1 .4 1.4.5.6.2 1.1.2 1.5.1.4-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2 0-.1-.2-.2-.4-.3z"/>
-    </svg>
-
-    <span class="text-glow-green">WhatsApp</span>
-  </a>
-
-</div>
-</div>
-
-<div class="hidden md:grid grid-cols-2 sm:grid-cols-2 md:grid-cols-2 gap-8 md:gap-16 justify-items-center mt-14 md:mt-0">
-
-<!-- Machinery Spares -->
-<div class="feature float">
-<div class="icon-box bg-gradient-to-br from-blue-600 to-indigo-600">
-<svg viewBox="0 0 24 24" stroke="white" fill="none" stroke-width="2">
-<circle cx="12" cy="12" r="3"/>
-<path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06
-a1.65 1.65 0 0 0-1.82-.33a1.65 1.65 0 0 0-1 1.51V22a2 2 0 1 1-4 0v-.09
-a1.65 1.65 0 0 0-1-1.51a1.65 1.65 0 0 0-1.82.33l-.06.06
-a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82
-a1.65 1.65 0 0 0-1.51-1H2a2 2 0 1 1 0-4h.09
-a1.65 1.65 0 0 0 1.51-1a1.65 1.65 0 0 0-.33-1.82l-.06-.06
-a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H8
-a1.65 1.65 0 0 0 1-1.51V2a2 2 0 1 1 4 0v.09
-a1.65 1.65 0 0 0 1 1.51a1.65 1.65 0 0 0 1.82-.33l.06-.06
-a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V8
-a1.65 1.65 0 0 0 1.51 1H22a2 2 0 1 1 0 4h-.09
-a1.65 1.65 0 0 0-1.51 1z"/>
-</svg>
-</div>
-<span class="text-white font-semibold drop-shadow-md">Machinery Spares</span>
-</div>
-
-<!-- Industrial Bearings (SVG – no white background) -->
-<div class="feature float">
-<div class="icon-box bg-gradient-to-br from-emerald-500 to-teal-500">
-<svg viewBox="0 0 100 100" fill="none">
-<circle cx="50" cy="50" r="46" stroke="white" stroke-width="6"/>
-<circle cx="50" cy="50" r="32" stroke="white" stroke-width="6"/>
-<circle cx="50" cy="50" r="14" stroke="white" stroke-width="6"/>
-
-<circle cx="50" cy="18" r="5" fill="white"/>
-<circle cx="72" cy="28" r="5" fill="white"/>
-<circle cx="82" cy="50" r="5" fill="white"/>
-<circle cx="72" cy="72" r="5" fill="white"/>
-<circle cx="50" cy="82" r="5" fill="white"/>
-<circle cx="28" cy="72" r="5" fill="white"/>
-<circle cx="18" cy="50" r="5" fill="white"/>
-<circle cx="28" cy="28" r="5" fill="white"/>
+<svg width="22" height="22" viewBox="0 0 32 32">
+  <circle cx="16" cy="16" r="16" fill="#16a34a"/>
+  <path fill="#ffffff"
+  d="M16 6C10.48 6 6 10.03 6 15c0 2.01.71 3.86 1.9 5.34L6 26l5.9-1.88A10.3 10.3 0 0 0 16 25c5.52 0 10-4.03 10-9s-4.48-10-10-10z"/>
+  <path fill="#16a34a"
+  d="M19.7 17.3c-.2-.1-1.1-.5-1.3-.6-.2-.1-.4-.1-.6.1-.2.3-.6.6-.7.8-.2.2-.3.2-.5.1-.3-.1-1-.4-1.9-1.2-.7-.6-1.2-1.3-1.3-1.6-.1-.2 0-.4.1-.5.1-.1.3-.3.4-.4.1-.1.2-.2.2-.4.1-.2 0-.3 0-.4 0-.1-.6-1.4-.8-1.9-.2-.5-.4-.4-.6-.4h-.5c-.2 0-.4.1-.6.3-.2.2-.8.8-.8 2s.8 2.3.9 2.5c.1.2 1.8 2.8 4.3 3.9.6.2 1 .4 1.4.5.6.2 1.1.2 1.5.1.4-.1 1.4-.6 1.6-1.2.2-.6.2-1.1.1-1.2 0-.1-.2-.2-.4-.3z"/>
 </svg>
 
-
-</div>
-<span class="text-white font-semibold drop-shadow-md">Industrial Bearings</span>
-</div>
-
-<!-- Textile Equipment -->
-<div class="feature float">
-<div class="icon-box bg-gradient-to-br from-teal-500 to-cyan-500">
-<img loading="lazy"
-  src="images/textile-machinery.svg"
-  style="
-    width:40px;
-    height:auto;
-    filter: invert(1);
-  "
-  alt="Textile Equipment"
-/>
-</div>
-<span class="text-white font-semibold drop-shadow-md">Textile Equipment</span>
+<span>WhatsApp</span>
+</a>
 </div>
 
-<!-- Power Solutions -->
-<div class="feature float">
-<div class="icon-box bg-gradient-to-br from-indigo-500 to-purple-500">
-<svg viewBox="0 0 24 24" stroke="white" fill="none" stroke-width="2">
-<path d="M13 2L3 14h7l-1 8 10-12h-7l1-8z"/>
-</svg>
-</div>
-<span class="text-white font-semibold drop-shadow-md">Power Solutions</span>
-</div>
+      </div>
 
-</div>
-</div>
+    </div>
+
+  </div>
+
+  <div class="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent z-10"></div>
+
 </section>
 
+
+
 <!-- STATS -->
-<section class="bg-white py-16">
-<div class="max-w-7xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+<section class="bg-white py-16 relative z-30 -mt-2">
+<div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center mb-12">
 <div><h3 class="text-4xl font-bold text-blue-600">30+</h3><p>Years Experience</p></div>
 <div><h3 class="text-4xl font-bold text-blue-600">500+</h3><p>Satisfied Clients</p></div>
 <div><h3 class="text-4xl font-bold text-blue-600">15+</h3><p>Countries Served</p></div>
@@ -1413,7 +1554,9 @@ a1.65 1.65 0 0 0-1.51 1z"/>
 </section>
 
 <!-- ABOUT US -->
-<section id="about" class="bg-white py-16 sm:py-20 md:py-28">
+<section id="about" class="scroll-animate relative pt-32 pb-20 -mt-20 md:-mt-28 z-30">
+
+ 
   <div class="max-w-7xl mx-auto px-6">
 
     <!-- Heading -->
@@ -3538,13 +3681,6 @@ toggleMenu();
 }
 })
 
-const observer = new IntersectionObserver(entries => {
-  entries.forEach(entry => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add("opacity-100","translate-y-0");
-    }
-  });
-});
 
 document.querySelectorAll("section").forEach(section => {
   section.classList.add("opacity-0","translate-y-8","transition","duration-700");
@@ -3790,7 +3926,7 @@ function openProduct(name, type){
 </div>
 
 <button id="scrollTopBtn"
-class="glass-btn glass-blue fixed bottom-24 right-6 w-12 h-12 flex items-center justify-center rounded-full bg-blue-600/80 text-white z-50">
+class="glass-btn glass-blue fixed bottom-24 right-6 w-12 h-12 flex items-center justify-center rounded-full text-white z-50">
 
 <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" viewBox="0 0 24 24" stroke="white" stroke-width="3">
   <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7" />
@@ -3901,9 +4037,7 @@ if (loader) {
 
 
 <!-- IMAGE MODAL -->
-<div id="imageModal"
-     onclick="closeImageModal()"
-     class="fixed inset-0 bg-black/80 hidden items-center justify-center z-50">
+<div id="imageModal" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-50">
 
   <!-- CLOSE BUTTON -->
   <button onclick="closeImageModal()" 
@@ -3960,6 +4094,9 @@ if (loader) {
 
 <script>
 
+
+
+
 function openImageModal(src) {
 
   const modal = document.getElementById("imageModal");
@@ -3973,47 +4110,31 @@ function openImageModal(src) {
   setTimeout(initZoom, 100); // 🔥 IMPORTANT
 }
 
-function closeImageModal() {
 
-  const modal = document.getElementById("imageModal");
-  const img = document.getElementById("modalImgPreview");
-
-  modal.classList.remove("flex");
-  modal.classList.add("hidden");
-
-  scale = 1;
-  currentX = 0;
-  currentY = 0;
-
-  img.style.transform = "translate(0,0) scale(1)";
-}
-
-let galleryImages = [];
-let currentIndex = 0;
 
 let animationId;
 let currentScroll = 0;
 let isPaused = false;
 let scrollSpeed = 0.8;
+let container;
+let track;
 
 window.addEventListener("load", () => {
 
-  // duplicate AFTER full load
-  track.innerHTML += track.innerHTML;
+container = document.getElementById("scrollContainer");
+track = document.getElementById("scrollTrack");
 
-  // start from middle (fixes jump + lag)
+  if(!track || !container) return;
+
+  // duplicate AFTER ready
+  track.innerHTML = track.innerHTML + track.innerHTML;
+
   currentScroll = track.scrollWidth / 2;
   container.scrollLeft = currentScroll;
 
-  // start animation AFTER layout ready
   animationId = requestAnimationFrame(autoScroll);
 
 });
-
-const container = document.getElementById("scrollContainer");
-const track = document.getElementById("scrollTrack");
-
-
 
 // AUTO SCROLL
 function autoScroll() {
@@ -4034,14 +4155,22 @@ function autoScroll() {
 }
 
 
-// HOVER
-container.addEventListener("mouseenter", () => {
-  isPaused = true;
+window.addEventListener("load", () => {
+
+  const container = document.getElementById("scrollContainer");
+
+  if(!container) return;
+
+  container.addEventListener("mouseenter", () => {
+    isPaused = true;
+  });
+
+  container.addEventListener("mouseleave", () => {
+    isPaused = false;
+  });
+
 });
 
-container.addEventListener("mouseleave", () => {
-  isPaused = false;
-});
 
 // OPEN
 window.openCard = function(el) {
@@ -4146,32 +4275,6 @@ function sendForm(){
   sendWA(); // reuse same WhatsApp logic
 }
 
-function openImage(src){
-  document.getElementById("previewImg").src = src;
-  document.getElementById("imagePreview").classList.remove("hidden");
-}
-
-
-
-window.onload = function(){
-
-  const gallery = document.getElementById("galleryContent");
-
-  for(let i = 1; i <= 33; i++){
-
-    gallery.innerHTML += `
-      <div class="bg-white rounded-xl p-4 shadow text-center cursor-pointer hover:shadow-lg transition">
-	
-        <!-- PLACEHOLDER IMAGE -->
-        <div class="w-full h-40 bg-gray-200 rounded-lg mb-3"></div>
-
-        <p class="text-sm font-medium">Product ${i}</p>
-
-      </div>
-    `;
-  }
-
-}
 
 
 function openGalleryModal(){
@@ -4187,7 +4290,7 @@ function openGalleryModal(){
 
         <img src="images/card/product${i}.jpg"
              data-title="${productNames[i-1]}"
-             onclick="openPreview(this)"
+             onclick="window.openPreview(this)"
              class="w-full h-48 md:h-64 object-contain bg-white rounded-xl mb-3">
 
         <p class="font-semibold">${productNames[i-1]}</p>
@@ -4208,26 +4311,31 @@ function closeGalleryModal(){
 
 
 
-const scrollTrack = document.getElementById("scrollTrack");
+window.addEventListener("load", () => {
 
-scrollTrack.innerHTML = "";
+  const scrollTrack = document.getElementById("scrollTrack");
+  if(!scrollTrack) return;
 
-for(let i = 1; i <= 35; i++){
-  scrollTrack.innerHTML += `
-    <div class="min-w-[220px] flex-shrink-0 bg-white rounded-xl shadow p-4">
-      
-      <img src="images/card/product${i}.jpg"
-           data-title="${productNames[i-1]}"
-             onclick="openPreview(this)"
-           class="cursor-pointer w-full h-40 object-contain bg-white rounded-lg mb-3">
+  scrollTrack.innerHTML = "";
 
-      <h4 class="text-sm font-semibold text-center leading-tight whitespace-pre-line min-h-[40px]">
-  ${productNames[i-1]}
-</h4>
+  for(let i = 1; i <= 35; i++){
+    scrollTrack.innerHTML += `
+      <div class="min-w-[220px] flex-shrink-0 bg-white rounded-xl shadow p-4">
+        
+        <img src="images/card/product${i}.jpg"
+             data-title="${productNames[i-1]}"
+             onclick="window.openPreview(this)"
+             class="cursor-pointer w-full h-40 object-contain bg-white rounded-lg mb-3">
 
-    </div>
-  `;
-}
+        <h4 class="text-sm font-semibold text-center leading-tight whitespace-pre-line min-h-[40px]">
+          ${productNames[i-1]}
+        </h4>
+
+      </div>
+    `;
+  }
+
+});
 
 function openCard(el) {
 
@@ -4251,28 +4359,7 @@ function openCard(el) {
 
 
 <script>
-document.addEventListener("DOMContentLoaded", () => {
 
-  const scrollTrack = document.getElementById("scrollTrack");
-
-  for(let i = 1; i <= 35; i++){
-    scrollTrack.innerHTML += `
-      <div class="min-w-[220px] flex-shrink-0 bg-white rounded-xl shadow p-4">
-
-        <img src="images/card/product${i}.jpg"
-             data-title="${productNames[i-1]}"
-             onclick="openPreview(this)"
-             class="cursor-pointer w-full h-40 object-cover rounded-lg mb-3">
-
-        <h4 class="text-sm font-semibold text-center leading-tight whitespace-pre-line min-h-[40px]">
-  ${productNames[i-1]}
-</h4>
-
-      </div>
-    `;
-  }
-
-});
 
 let scale = 1;
 let currentX = 0;
@@ -4322,51 +4409,139 @@ function initZoom() {
   };
 }
 
-function openPreview(el){
 
-  const images = document.querySelectorAll('[onclick="openPreview(this)"]');
 
-  galleryImages = Array.from(images);
+let galleryImages = [];
+let currentIndex = 0;
 
-  currentIndex = galleryImages.indexOf(el);
 
-  showPreviewImage();
+
+
+
+
+
+
+window.addEventListener("load", () => {
+  document.querySelectorAll(".fade-in-up").forEach(el=>{
+    setTimeout(()=> el.classList.add("show"), 200);
+  });
+});
+
+
+window.addEventListener("load", () => {
+  setTimeout(() => {
+    document.querySelector(".fade-in-up").classList.add("show");
+  }, 300);
+});
+ 
+
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if(entry.isIntersecting){
+      entry.target.classList.add("show");
+    }
+  });
+});
+
+document.querySelectorAll(".scroll-animate").forEach(el => {
+  observer.observe(el);
+});
+
+let simpleImages = [];
+let simpleIndex = 0;
+
+window.openPreview = function(el){
+
+  const modal = document.getElementById("simplePreviewModal");
+  const img = document.getElementById("simplePreviewImg");
+
+  // 🔥 collect all images (scroll + gallery)
+  simpleImages = Array.from(document.querySelectorAll("#scrollTrack img, #galleryGrid img"));
+
+  simpleIndex = simpleImages.indexOf(el);
+
+  img.src = el.src;
+
+  modal.style.display = "flex";
+
+  setTimeout(initZoom, 100); // reuse your zoom
 }
 
-function showPreviewImage(){
+// NEXT
+function nextSimple(){
+  if(simpleImages.length === 0) return;
 
-  const modal = document.getElementById("imageModal");
-  const img = document.getElementById("modalImgPreview");
+  simpleIndex = (simpleIndex + 1) % simpleImages.length;
 
-  img.src = galleryImages[currentIndex].src;
-
-  modal.classList.remove("hidden");
-  modal.classList.add("flex");
-
-  setTimeout(initZoom, 100);
+  document.getElementById("simplePreviewImg").src =
+    simpleImages[simpleIndex].src;
 }
 
-function nextImage(){
-  currentIndex++;
+// PREV
+function prevSimple(){
+  if(simpleImages.length === 0) return;
 
-  if(currentIndex >= galleryImages.length){
-    currentIndex = 0;
+  simpleIndex = (simpleIndex - 1 + simpleImages.length) % simpleImages.length;
+
+  document.getElementById("simplePreviewImg").src =
+    simpleImages[simpleIndex].src;
+}
+
+
+function closeSimplePreview(){
+
+  const modal = document.getElementById("simplePreviewModal");
+  const img = document.getElementById("simplePreviewImg");
+
+  modal.style.display = "none";
+
+  // reset zoom
+  scale = 1;
+  currentX = 0;
+  currentY = 0;
+
+  img.style.transform = "translate(0,0) scale(1)";
+}
+
+function outsideSimpleClick(event){
+  const img = document.getElementById("simplePreviewImg");
+
+  if(!img.contains(event.target)){
+    closeSimplePreview();
   }
-
-  showPreviewImage();
-}
-
-function prevImage(){
-  currentIndex--;
-
-  if(currentIndex < 0){
-    currentIndex = galleryImages.length - 1;
-  }
-
-  showPreviewImage();
 }
 
 </script>
+
+<div id="simplePreviewModal"
+     onclick="outsideSimpleClick(event)"
+     style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.9); z-index:9999; align-items:center; justify-content:center;">
+
+  <!-- IMAGE -->
+  <img id="simplePreviewImg"
+       onclick="event.stopPropagation()"
+       style="max-width:90%; max-height:90%; border-radius:10px; cursor:zoom-in;">
+
+  <!-- CLOSE -->
+  <button onclick="closeSimplePreview()"
+          style="position:absolute; top:20px; right:25px; font-size:30px; color:white; background:none; border:none; cursor:pointer;">
+    ✕
+  </button>
+
+  <!-- PREV -->
+  <button onclick="prevSimple()"
+          style="position:absolute; left:20px; top:50%; transform:translateY(-50%); font-size:40px; color:white; background:none; border:none; cursor:pointer;">
+    ❮
+  </button>
+
+  <!-- NEXT -->
+  <button onclick="nextSimple()"
+          style="position:absolute; right:20px; top:50%; transform:translateY(-50%); font-size:40px; color:white; background:none; border:none; cursor:pointer;">
+    ❯
+  </button>
+
+</div>
+
 
 </body>
 

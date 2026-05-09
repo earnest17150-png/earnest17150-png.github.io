@@ -1485,89 +1485,124 @@ class="glass-btn glass-blue ripple w-[88%] flex items-center justify-center gap-
 
 <!-- MOBILE HERO -->
 <section id="home-mobile"
-class="block md:hidden bg-black">
+class="block md:hidden relative overflow-hidden min-h-screen">
 
-  <!-- HEADER SPACE FIX -->
-  <div class="relative">
+  <!-- BLURRED VIDEO BACKGROUND -->
+  <div class="absolute inset-0 z-0 overflow-hidden">
 
-    <!-- VIDEO -->
     <video
       autoplay
       muted
       loop
       playsinline
       preload="auto"
-      class="w-full object-contain bg-black">
+      class="absolute inset-0 w-full h-full object-cover scale-110 blur-md brightness-50">
 
       <source src="video/hero.mp4" type="video/mp4">
 
     </video>
 
+    <!-- DARK OVERLAY -->
+    <div class="absolute inset-0 bg-black/40"></div>
+
   </div>
 
-  <!-- CONTENT SECTION -->
-  <div class="bg-black text-center px-6 py-10">
+  <!-- CONTENT -->
+  <div class="relative z-10 flex flex-col min-h-screen">
 
-    <!-- SMALL TEXT -->
-    <p class="text-green-400 text-sm mb-3">
-      ● Trusted Since 1990
-    </p>
+    <!-- TOP TEXT AREA -->
+    <div class="px-6 pt-10 pb-6 text-center">
 
-    <!-- HEADING -->
-    <h1 class="text-5xl font-extrabold text-white leading-tight mb-5">
-      30+ Years <br>
+      <p class="text-green-400 text-sm mb-3">
+        ● Trusted Since 1990
+      </p>
 
-      <span class="text-blue-300">
-        of Textile Excellence
-      </span>
+      <h1 class="text-5xl font-extrabold text-white leading-tight mb-5">
 
-    </h1>
+        30+ Years <br>
 
-    <!-- DESCRIPTION -->
-    <p class="text-gray-300 text-base leading-relaxed mb-10">
+        <span class="text-blue-300">
+          of Textile Excellence
+        </span>
 
-      Prime dealer of European open-end spares and authorized distributor of premium textile & industrial bearings.
+      </h1>
 
-    </p>
+      <p class="text-gray-200 text-base leading-relaxed">
 
-    <!-- BUTTONS -->
-    <div class="flex flex-col gap-4">
+        Prime dealer of European open-end spares and authorized distributor of premium textile & industrial bearings.
 
-      <!-- VIEW -->
+      </p>
+
+    </div>
+
+    <!-- CENTER VIDEO -->
+    <div class="px-5 mt-2">
+
+      <div class="rounded-3xl overflow-hidden shadow-2xl border border-white/10">
+
+        <video
+          autoplay
+          muted
+          loop
+          playsinline
+          preload="auto"
+          class="w-full object-cover">
+
+          <source src="video/hero.mp4" type="video/mp4">
+
+        </video>
+
+      </div>
+
+    </div>
+
+    <!-- BUTTON AREA -->
+    <div class="mt-auto px-5 pb-8 pt-6">
+
+      <!-- VIEW PRODUCT -->
       <a href="#showcase"
       class="glass-btn glass-white
              w-full py-4 rounded-2xl
-             text-white font-semibold text-lg">
+             text-white font-semibold text-lg
+             flex items-center justify-center mb-4">
 
         View Products →
 
       </a>
 
-      <!-- CONTACT -->
-      <a href="#contact"
-      class="glass-btn glass-blue
-             w-full py-4 rounded-2xl
-             text-white font-semibold text-lg">
+      <!-- 2 BUTTON ROW -->
+      <div class="grid grid-cols-2 gap-4">
 
-        Contact Us
+        <!-- CONTACT -->
+        <a href="#contact"
+        class="glass-btn glass-blue
+               py-4 rounded-2xl
+               text-white font-semibold
+               text-center">
 
-      </a>
+          Contact Us
 
-      <!-- WHATSAPP -->
-      <a href="https://wa.me/919842217150"
-      class="glass-btn glass-green
-             w-full py-4 rounded-2xl
-             text-white font-semibold text-lg">
+        </a>
 
-        WhatsApp
+        <!-- WHATSAPP -->
+        <a href="https://wa.me/919842217150"
+        class="glass-btn glass-green
+               py-4 rounded-2xl
+               text-white font-semibold
+               text-center">
 
-      </a>
+          WhatsApp
+
+        </a>
+
+      </div>
 
     </div>
 
   </div>
 
 </section>
+
 
 <!-- HERO -->
 <section id="home"

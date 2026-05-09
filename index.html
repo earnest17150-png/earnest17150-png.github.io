@@ -1485,10 +1485,10 @@ class="glass-btn glass-blue ripple w-[88%] flex items-center justify-center gap-
 
 <!-- MOBILE HERO -->
 <section id="home-mobile"
-class="block md:hidden relative overflow-hidden">
+class="block md:hidden relative overflow-hidden bg-black">
 
-  <!-- Background -->
-  <div class="absolute inset-0">
+  <!-- VIDEO -->
+  <div class="absolute inset-0 z-0">
 
     <video id="heroVideo"
       autoplay
@@ -1496,21 +1496,26 @@ class="block md:hidden relative overflow-hidden">
       loop
       playsinline
       preload="auto"
-      class="absolute inset-0 w-full h-full object-cover">
+      class="w-full h-full object-contain bg-black">
 
       <source src="video/hero.mp4" type="video/mp4">
+
     </video>
 
-    <!-- Dark overlay -->
-    <div class="absolute inset-0 bg-black/55"></div>
+    <!-- DARK OVERLAY -->
+    <div class="absolute inset-0 bg-black/45"></div>
+
   </div>
 
   <!-- CONTENT -->
   <div class="relative z-10
-              flex flex-col justify-center
               min-h-screen
+              flex flex-col
+              justify-center
+              items-center
+              text-center
               px-6
-              text-center">
+              py-20">
 
     <p class="text-green-400 text-sm mb-3">
       ● Trusted Since 1990
@@ -1523,39 +1528,33 @@ class="block md:hidden relative overflow-hidden">
       </span>
     </h1>
 
-    <p class="text-gray-200 text-lg leading-relaxed mb-8">
+    <p class="text-gray-200 text-base leading-relaxed mb-8 max-w-md">
       Prime dealer of European open-end spares and authorized distributor of premium textile & industrial bearings.
     </p>
 
     <!-- BUTTONS -->
-    <div class="flex flex-col gap-4">
+    <div class="w-full flex flex-col gap-4">
 
       <a href="#showcase"
-      class="glass-btn glass-white
-             py-4 rounded-2xl
-             text-white font-semibold text-lg">
+      class="glass-btn glass-white w-full py-4 rounded-2xl text-white font-semibold text-lg">
         View Products →
       </a>
 
       <a href="#contact"
-      class="glass-btn glass-blue
-             py-4 rounded-2xl
-             text-white font-semibold text-lg">
+      class="glass-btn glass-blue w-full py-4 rounded-2xl text-white font-semibold text-lg">
         Contact Us
       </a>
 
       <a href="https://wa.me/919842217150"
-      class="glass-btn glass-green
-             py-4 rounded-2xl
-             text-white font-semibold text-lg">
+      class="glass-btn glass-green w-full py-4 rounded-2xl text-white font-semibold text-lg">
         WhatsApp
       </a>
 
     </div>
 
   </div>
-</section>
 
+</section>
 
 
 <!-- HERO -->

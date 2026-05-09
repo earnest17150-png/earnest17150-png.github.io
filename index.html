@@ -1333,6 +1333,14 @@ html, body {
   pointer-events:none;
 }
 
+html,body{
+overflow-x:hidden;
+}
+
+#home-mobile{
+overflow:hidden;
+}
+
 </style>
 
 
@@ -1358,7 +1366,8 @@ html, body {
 
 <!-- MOBILE MENU BUTTON -->
 <button onclick="toggleMenu()" 
-class="md:hidden w-9 h-9 flex items-center justify-center" 
+class="md:hidden w-12 h-12 flex items-center justify-center
+bg-white rounded-2xl shadow-lg border border-gray-200"
 id="hamburgerBtn">
 
   <div class="flex flex-col gap-[5px]">
@@ -1518,7 +1527,7 @@ class="block md:hidden relative overflow-hidden min-h-screen">
       loop
       playsinline
       preload="auto"
-      class="absolute inset-0 w-full h-full object-cover scale-110 blur-md brightness-50">
+      class="absolute inset-0 w-full h-full object-cover blur-md brightness-50">
 
       <source src="video/hero.mp4" type="video/mp4">
 

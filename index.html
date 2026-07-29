@@ -342,6 +342,7 @@ header nav a {
   border-radius: 10px;
 }
 
+
 /* ===== IMAGE PREMIUM EFFECTS ===== */
 
 /* Only inside brand modal */
@@ -4312,45 +4313,6 @@ if (loader) {
 </div>
 </div>
 
-
-
-
-
-<!-- IMAGE MODAL -->
-<div id="imageModal" class="hidden fixed inset-0 bg-black/80 flex items-center justify-center z-50">
-
-  <!-- CLOSE BUTTON -->
-  <button onclick="closeImageModal()" 
-    class="absolute top-6 right-6 text-white text-3xl">&times;</button>
-
-  <!-- IMAGE -->
-  <div class="overflow-hidden w-full h-full flex items-center justify-center">
-
-  <img id="modalImgPreview"
-       onclick="event.stopPropagation()"
-       class="max-w-[90%] max-h-[90%] rounded-xl shadow-lg object-contain transition-transform duration-200 cursor-zoom-in">
-
-</div>
-
- <!-- PREV -->
-  <button onclick="prevImage()" 
-    class="absolute left-5 top-1/2 -translate-y-1/2 text-white text-4xl z-50">
-    ❮
-  </button>
-
-  <!-- NEXT -->
-  <button onclick="nextImage()" 
-    class="absolute right-5 top-1/2 -translate-y-1/2 text-white text-4xl z-50">
-    ❯
-  </button>
-
-</div>
-
-
-</div>
-
-
-
 <div id="productModal" onclick="closeModal()" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-50">
 
   <!-- CARD -->
@@ -4375,8 +4337,6 @@ if (loader) {
 <script>
 
 
-
-
 function openImageModal(src) {
 
   const modal = document.getElementById("imageModal");
@@ -4389,7 +4349,6 @@ function openImageModal(src) {
 
   setTimeout(initZoom, 100); // 🔥 IMPORTANT
 }
-
 
 
 let animationId;

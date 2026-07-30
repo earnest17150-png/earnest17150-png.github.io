@@ -1355,6 +1355,52 @@ box-shadow:0 10px 30px rgba(0,0,0,.12);
 background:#2563eb !important;
 }
 
+/* ===== NEW GALLERY ===== */
+
+#galleryModal{
+
+backdrop-filter:blur(8px);
+
+}
+
+#galleryImage{
+
+transform-origin:center center;
+
+user-select:none;
+
+-webkit-user-drag:none;
+
+}
+
+#galleryImage:active{
+
+cursor:grabbing;
+
+}
+
+#galleryPrev,
+#galleryNext,
+#galleryClose{
+
+transition:.25s;
+
+}
+
+#galleryPrev:hover,
+#galleryNext:hover,
+#galleryClose:hover{
+
+transform:scale(1.08);
+
+}
+
+body.gallery-open{
+
+overflow:hidden;
+
+}
+
 </style>
 
 
@@ -1966,7 +2012,7 @@ bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
     <p class="text-gray-500 mt-2">Explore our premium product range</p>
   </div>
 
-  <!-- SCROLL CONTAINER -->
+   <!-- SCROLL CONTAINER -->
 <div class="relative">
 
   <div id="scrollContainer" class="w-full overflow-hidden">
@@ -2007,9 +2053,10 @@ bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
 
 
 
+
   <!-- EXPLORE BUTTON -->
   <div class="text-center mt-10">
-    <button onclick="openGalleryModal()" class="glass-btn glass-blue bg-blue-600/80 text-white px-6 py-3 rounded-xl font-semibold">
+    <button id="exploreAllBtn" class="glass-btn glass-blue bg-blue-600/80 text-white px-6 py-3 rounded-xl font-semibold">
       Explore All →
     </button> 
   </div>
@@ -4291,48 +4338,11 @@ if (loader) {
   }, 600);
 }
 })
+
 </script>
 
-<!-- GALLERY MODAL -->
-<div id="galleryModal"
-     onclick="if(event.target.id==='galleryModal') closeGalleryModal()"
-     class="fixed inset-0 bg-black/60 hidden flex items-center justify-center z-50">
-  <div class="bg-white rounded-2xl popup-anim w-[92%] md:w-[90%] max-w-md md:max-w-5xl h-[80vh] p-6 md:p-8 relative flex flex-col overflow-hidden">
 
-    <!-- CLOSE -->
-    <button onclick="closeGalleryModal()" class="absolute top-4 right-4 text-gray-500 text-2xl">×</button>
-
-    <h3 id="brandTitle" class="text-2xl font-bold mb-6 text-center"></h3>
-
-    <!-- PRODUCT GRID -->
-    <div class="flex-1 overflow-y-auto pr-2 brand-scroll max-h-full">
-    
-    <div id="galleryGrid" class="grid grid-cols-2 md:grid-cols-3 gap-6"></div>
-
-  </div>
-</div>
-</div>
-
-<div id="productModal" onclick="closeModal()" class="fixed inset-0 bg-black/60 hidden items-center justify-center z-50">
-
-  <!-- CARD -->
-  <div onclick="event.stopPropagation()" class="bg-white rounded-2xl shadow-xl w-[90%] md:w-[70%] lg:w-[60%] max-w-4xl p-6 relative animate-pop">
-
-    <!-- CLOSE BUTTON -->
-    <button onclick="closeModal()" 
-      class="absolute top-3 right-3 text-xl font-bold text-gray-600 hover:text-black">
-      ✕
-    </button>
-
-    <!-- IMAGE -->
-    <img id="modalImg" class="w-full h-[300px] md:h-[400px] lg:h-[500px] object-contain rounded-lg mb-4">
-
-    <!-- TITLE -->
-    <h3 id="modalTitle" class="text-lg font-semibold text-center whitespace-pre-line"></h3>
-
-  </div>
-
-</div>
+	
 
 <script>
 
@@ -4360,18 +4370,59 @@ let track;
 
 window.addEventListener("load", () => {
 
-container = document.getElementById("scrollContainer");
-track = document.getElementById("scrollTrack");
+    container = document.getElementById("scrollContainer");
+    track = document.getElementById("scrollTrack");
 
-  if(!track || !container) return;
+    if (!track || !container) return;
 
-  // duplicate AFTER ready
-  track.innerHTML = track.innerHTML + track.innerHTML;
+    scrollTrack.innerHTML = "";
 
-  currentScroll = track.scrollWidth / 2;
-  container.scrollLeft = currentScroll;
+for(let i=1;i<=35;i++){
 
-  animationId = requestAnimationFrame(autoScroll);
+    scrollTrack.innerHTML += `
+    <div class="gallery-card min-w-[220px] flex-shrink-0 bg-white rounded-xl shadow p-4">
+            <img src="images/card/product${i}.jpg"
+                 data-title="${productNames[i-1]}"
+                 onclick="gallery.open(this)"
+                 class="cursor-pointer w-full h-40 object-contain bg-white rounded-lg mb-3">
+
+            <h4 class="text-sm font-semibold text-center leading-tight whitespace-pre-line min-h-[40px]">
+                ${productNames[i-1]}
+            </h4>
+        </div>`;
+    }
+
+    track.innerHTML += track.innerHTML;
+
+
+    const grid = document.getElementById("galleryGrid");
+
+grid.innerHTML = "";
+
+for(let i=1;i<=35;i++){
+
+    grid.innerHTML += `
+    <div class="bg-white rounded-xl shadow p-4 hover:shadow-xl transition">
+
+        <img
+        src="images/card/product${i}.jpg"
+        data-title="${productNames[i-1]}"
+        onclick="gallery.open(this)"
+        class="cursor-pointer w-full h-40 object-contain bg-white rounded-lg mb-3">
+
+        <h4 class="text-sm font-semibold text-center leading-tight whitespace-pre-line">
+            ${productNames[i-1]}
+        </h4>
+
+    </div>
+    `;
+
+}
+
+    currentScroll = track.scrollWidth / 2;
+    container.scrollLeft = currentScroll;
+
+    animationId = requestAnimationFrame(autoScroll);
 
 });
 
@@ -4411,45 +4462,7 @@ window.addEventListener("load", () => {
 });
 
 
-// OPEN
-window.openCard = function(el) {
-  isPaused = true;
-  cancelAnimationFrame(animationId);
-
-currentScroll = container.scrollLeft;
-
-  container.style.scrollBehavior = "auto";
-
-  const imgSrc = el.src;
-  const title = el.dataset.title;
-
-  document.getElementById("modalImg").src = imgSrc;
-  document.getElementById("modalTitle").innerText = title;
-
-  const modal = document.getElementById("productModal");
-
-  modal.classList.remove("hidden");
-  modal.classList.add("flex");
-
-  document.body.style.overflow = "hidden";
-}
-
-// CLOSE
-window.closeModal = function() {
-  isPaused = false;
-
-  container.style.scrollBehavior = "auto";
-
-  const modal = document.getElementById("productModal");
-
-  modal.classList.add("hidden");
-  modal.classList.remove("flex");
-
-  document.body.style.overflow = "auto";
-
-  animationId = requestAnimationFrame(autoScroll);
-}
-
+	
 function scrollLeftBtn() {
   isPaused = true;
 
@@ -4516,81 +4529,6 @@ function sendForm(){
 
 
 
-function openGalleryModal(){
-
-
-  const grid = document.getElementById("galleryGrid");
-  grid.innerHTML = "";
-
-  for(let i = 1; i <= 35; i++){
-
-    grid.innerHTML += `
-      <div class="cursor-pointer border rounded-xl p-5 hover:shadow-xl transition text-center w-full">
-
-        <img src="images/card/product${i}.jpg"
-             data-title="${productNames[i-1]}"
-             onclick="window.openPreview(this)"
-             class="w-full h-48 md:h-64 object-contain bg-white rounded-xl mb-3">
-
-        <p class="font-semibold">${productNames[i-1]}</p>
-
-      </div>
-    `;
-  }
-
-  document.getElementById("galleryModal").classList.remove("hidden");
-  document.body.classList.add("no-scroll");
-}
-
-function closeGalleryModal(){
-  document.getElementById("galleryModal").classList.add("hidden");
-  document.body.classList.remove("no-scroll");
-}
-
-
-
-
-window.addEventListener("load", () => {
-
-  const scrollTrack = document.getElementById("scrollTrack");
-  if(!scrollTrack) return;
-
-  scrollTrack.innerHTML = "";
-
-  for(let i = 1; i <= 35; i++){
-    scrollTrack.innerHTML += `
-      <div class="min-w-[220px] flex-shrink-0 bg-white rounded-xl shadow p-4">
-        
-        <img src="images/card/product${i}.jpg"
-             data-title="${productNames[i-1]}"
-             onclick="window.openPreview(this)"
-             class="cursor-pointer w-full h-40 object-contain bg-white rounded-lg mb-3">
-
-        <h4 class="text-sm font-semibold text-center leading-tight whitespace-pre-line min-h-[40px]">
-          ${productNames[i-1]}
-        </h4>
-
-      </div>
-    `;
-  }
-
-});
-
-function openCard(el) {
-
-  const imgSrc = el.src;
-  const title = el.dataset.title;
-
-  document.getElementById("modalImg").src = imgSrc;
-  document.getElementById("modalTitle").innerText = title;
-
-  const modal = document.getElementById("productModal");
-
-  modal.classList.remove("hidden");
-  modal.classList.add("flex");
-
-  document.body.style.overflow = "hidden";
-}
 
 </script>
 
@@ -4600,71 +4538,13 @@ function openCard(el) {
 <script>
 
 
-let scale = 1;
-let currentX = 0;
-let currentY = 0;
 
-function initZoom() {
-  const img = document.getElementById("simplePreviewImg");
-  
-img.addEventListener("wheel", (e) => {
-  e.preventDefault(); // 🔥 stops background scroll
-}, { passive: false });
 
-  img.style.cursor = "grab";
-
-  img.onwheel = function(e) {
-    e.preventDefault();
-
-    const zoomSpeed = 0.1;
-
-    if (e.deltaY < 0) {
-      scale += zoomSpeed;
-    } else {
-      scale -= zoomSpeed;
-    }
-
-    // 🔥 NO LIMIT (only prevent negative)
-    if (scale < 0.5) scale = 0.5;
-
-    img.style.transform = `translate(${currentX}px, ${currentY}px) scale(${scale})`;
-  };
-
-  // DRAG
-  let isDragging = false;
-  let startX, startY;
-
-  img.onmousedown = function(e) {
-    isDragging = true;
-    startX = e.clientX - currentX;
-    startY = e.clientY - currentY;
-  };
-
-  window.onmousemove = function(e) {
-    if (!isDragging) return;
-
-    currentX = e.clientX - startX;
-    currentY = e.clientY - startY;
-
-    img.style.transform = `translate(${currentX}px, ${currentY}px) scale(${scale})`;
-  };
-
-  window.onmouseup = function() {
-    isDragging = false;
-  };
-}
 
 
 
 let galleryImages = [];
 let currentIndex = 0;
-
-
-
-
-
-
-
 
 window.addEventListener("load", () => {
   document.querySelectorAll(".fade-in-up").forEach(el=>{
@@ -4692,84 +4572,11 @@ document.querySelectorAll(".scroll-animate").forEach(el => {
   observer.observe(el);
 });
 
-let simpleImages = [];
-let simpleIndex = 0;
-
-window.openPreview = function(el){
-
-  const modal = document.getElementById("simplePreviewModal");
-  const img = document.getElementById("simplePreviewImg");
-
-  // 🔥 collect all images (scroll + gallery)
-  simpleImages = Array.from(document.querySelectorAll("#scrollTrack img, #galleryGrid img"));
-
-  simpleIndex = simpleImages.indexOf(el);
-
-  img.src = el.src;
-
-  modal.style.display = "flex";
-document.body.style.overflow = "hidden";
-  setTimeout(initZoom, 100); // reuse your zoom
-}
-
-// NEXT
-function nextSimple(){
-  if(simpleImages.length === 0) return;
-
-  simpleIndex = (simpleIndex + 1) % simpleImages.length;
-
-  const img = document.getElementById("simplePreviewImg");
-  img.src = simpleImages[simpleIndex].src;
-
-  resetZoom(); // 🔥 important
-}
-
-function prevSimple(){
-  if(simpleImages.length === 0) return;
-
-  simpleIndex = (simpleIndex - 1 + simpleImages.length) % simpleImages.length;
-
-  const img = document.getElementById("simplePreviewImg");
-  img.src = simpleImages[simpleIndex].src;
-
-  resetZoom(); // 🔥 important
-}
 
 
-function closeSimplePreview(){
 
-  const modal = document.getElementById("simplePreviewModal");
-  const img = document.getElementById("simplePreviewImg");
 
-  modal.style.display = "none";
 
-  // reset zoom
-  scale = 1;
-  currentX = 0;
-  currentY = 0;
-
-  img.style.transform = "translate(0,0) scale(1)";
-
-document.body.style.overflow = "auto";
-}
-
-function outsideSimpleClick(event){
-  const img = document.getElementById("simplePreviewImg");
-
-  if(!img.contains(event.target)){
-    closeSimplePreview();
-  }
-}
-
-function resetZoom(){
-  const img = document.getElementById("simplePreviewImg");
-
-  scale = 1;
-  currentX = 0;
-  currentY = 0;
-
-  img.style.transform = "translate(0,0) scale(1)";
-}
 
 const video = document.getElementById("heroVideo");
 
@@ -4783,34 +4590,106 @@ if (video) {
 }
 </script>
 
-<div id="simplePreviewModal"
-     onclick="outsideSimpleClick(event)"
-     style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.9); z-index:9999; align-items:center; justify-content:center;">
 
-  <!-- IMAGE -->
-  <img id="simplePreviewImg"
-       onclick="event.stopPropagation()"
-       style="max-width:90%; max-height:90%; border-radius:10px; cursor:zoom-in;">
+<div id="galleryGridModal"
+class="fixed inset-0 z-[999998] hidden bg-black/60 backdrop-blur-sm flex items-center justify-center">
 
-  <!-- CLOSE -->
-  <button onclick="closeSimplePreview()"
-          style="position:absolute; top:20px; right:25px; font-size:30px; color:white; background:none; border:none; cursor:pointer;">
-    ✕
-  </button>
+<div class="bg-white rounded-3xl w-[92%] max-w-6xl h-[85vh] flex flex-col overflow-hidden">
 
-  <!-- PREV -->
-  <button onclick="prevSimple()"
-          style="position:absolute; left:20px; top:50%; transform:translateY(-50%); font-size:40px; color:white; background:none; border:none; cursor:pointer;">
-    ❮
-  </button>
+<div class="flex justify-between items-center p-6 border-b">
 
-  <!-- NEXT -->
-  <button onclick="nextSimple()"
-          style="position:absolute; right:20px; top:50%; transform:translateY(-50%); font-size:40px; color:white; background:none; border:none; cursor:pointer;">
-    ❯
-  </button>
+<h2 class="text-2xl font-bold">
+All Products
+</h2>
+
+<button
+id="galleryGridClose"
+class="text-4xl leading-none">
+
+×
+
+</button>
 
 </div>
+
+<div
+id="galleryGrid"
+class="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-5 gap-6 p-6 overflow-y-auto flex-1">
+
+</div>
+
+</div>
+
+</div>
+
+
+
+<div id="galleryModal"
+class="fixed inset-0 z-[999999] hidden bg-black/95 flex items-center justify-center">
+
+    <!-- Close -->
+
+    <button id="galleryClose"
+    class="absolute top-5 right-5 w-12 h-12 rounded-full
+    bg-white/20 hover:bg-white/30 text-white text-3xl z-50">
+
+        ×
+
+    </button>
+
+    <!-- Previous -->
+
+    <button id="galleryPrev"
+    class="absolute left-5 top-1/2 -translate-y-1/2
+    w-14 h-14 rounded-full bg-white/20 hover:bg-white/30
+    text-white text-3xl z-50">
+
+        ❮
+
+    </button>
+
+    <!-- Next -->
+
+    <button id="galleryNext"
+    class="absolute right-5 top-1/2 -translate-y-1/2
+    w-14 h-14 rounded-full bg-white/20 hover:bg-white/30
+    text-white text-3xl z-50">
+
+        ❯
+
+    </button>
+
+    <!-- Counter -->
+
+    <div id="galleryCounter"
+    class="absolute top-6 left-1/2 -translate-x-1/2
+    text-white text-sm tracking-wider
+    bg-black/40 px-4 py-2 rounded-full">
+
+        1 / 1
+
+    </div>
+
+    <!-- Image Container -->
+
+    <div id="galleryStage"
+    class="w-full h-full flex items-center justify-center overflow-hidden">
+
+        
+        <img
+        id="galleryImage"
+        src=""
+        draggable="false"
+        class="max-w-[95vw] max-h-[90vh]
+        object-contain
+        select-none
+        transition-transform duration-200
+        cursor-grab">
+
+    </div>
+
+</div>
+
 
 <script>
 feather.replace();
@@ -4851,8 +4730,219 @@ handleHeroSections();
 
 window.addEventListener("resize", handleHeroSections);
 
+/* ===========================
+   GALLERY ENGINE - PART 3A
+=========================== */
+
+const gallery = {
+
+    images: [],
+    index: 0,
+    fromGrid: false,
+modal: null,
+image: null,
+counter: null,
+
+
+
+
+open(el){
+
+    this.fromGrid = el.closest("#galleryGrid") !== null;
+
+    this.modal = document.getElementById("galleryModal");
+    this.image = document.getElementById("galleryImage");
+    this.counter = document.getElementById("galleryCounter");
+
+    if(this.fromGrid){
+
+        this.images = Array.from(
+            document.querySelectorAll("#galleryGrid img")
+        );
+
+    }else{
+
+        // Only the first 35 images (ignore duplicated ones)
+        this.images = Array.from(
+            document.querySelectorAll("#scrollTrack img")
+        ).slice(0, 35);
+
+    }
+
+    this.index = this.images.indexOf(el);
+
+    this.show();
+
+    this.modal.classList.remove("hidden");
+
+    document.getElementById("galleryGridModal").classList.add("hidden");
+
+    document.body.classList.add("gallery-open");
+},
+
+ close(){
+
+    this.modal.classList.add("hidden");
+
+    if(this.fromGrid){
+
+        document
+            .getElementById("galleryGridModal")
+            .classList.remove("hidden");
+
+    }else{
+
+        document.body.classList.remove("gallery-open");
+
+    }
+
+},
+
+    show(){
+
+        const img = this.images[this.index];
+
+        if(!img) return;
+
+this.image.src = img.currentSrc || img.src;
+
+console.log("Clicked:", img.src);
+console.log("Gallery:", this.image.src);
+console.log("Image element:", this.image);
+
+        this.image.alt = img.alt || "";
+
+        this.counter.textContent =
+            `${this.index+1} / ${this.images.length}`;
+
+    },
+
+    next(){
+
+        this.index++;
+
+        if(this.index >= this.images.length){
+
+            this.index = 0;
+
+        }
+
+        this.show();
+
+    },
+
+    prev(){
+
+        this.index--;
+
+        if(this.index < 0){
+
+            this.index = this.images.length-1;
+
+        }
+
+        this.show();
+
+    },
+
+openAll(){
+
+    document
+        .getElementById("galleryGridModal")
+        .classList.remove("hidden");
+
+    document.body.classList.add("gallery-open");
+
+}
+
+};
+
+
+document.getElementById("exploreAllBtn").onclick = () => gallery.openAll();
+document
+.getElementById("galleryGridClose")
+.onclick = ()=>{
+
+document
+.getElementById("galleryGridModal")
+.classList.add("hidden");
+
+document.body.classList.remove("gallery-open");
+
+};
+
+document.getElementById("galleryGridClose").onclick = () => {
+
+    document
+        .getElementById("galleryGridModal")
+        .classList.add("hidden");
+
+};
+
+document.getElementById("galleryClose").addEventListener("click", e=>{
+    e.stopPropagation();
+    gallery.close();
+});
+
+document.getElementById("galleryNext").addEventListener("click", e=>{
+    e.stopPropagation();
+    gallery.next();
+});
+
+document.getElementById("galleryPrev").addEventListener("click", e=>{
+    e.stopPropagation();
+    gallery.prev();
+});
+
+console.log(gallery.modal);
+console.log(gallery.image);
+console.log(gallery.counter);
+
+document.getElementById("galleryModal").addEventListener("click",(e)=>{
+
+    if(e.target.id==="galleryModal"){
+
+        gallery.close();
+
+    }
+
+});
+
+
+document.addEventListener("keydown",(e)=>{
+
+    if(
+        document
+        .getElementById("galleryModal")
+        .classList
+        .contains("hidden")
+    ) return;
+
+    if(e.key==="ArrowRight"){
+
+        gallery.next();
+
+    }
+
+    if(e.key==="ArrowLeft"){
+
+        gallery.prev();
+
+    }
+
+    if(e.key==="Escape"){
+
+        gallery.close();
+
+    }
+
+});
 
 </script>
+
+<!-- =========================
+     IMAGE PREVIEW MODAL
+========================= -->
 
 
 </body>

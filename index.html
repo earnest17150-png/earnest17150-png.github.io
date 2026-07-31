@@ -4816,8 +4816,16 @@ open(el){
 
     }
 
-    this.index = this.images.indexOf(el);
-
+    this.index = this.images.findIndex(img =>
+    img.getAttribute("data-title") === el.getAttribute("data-title")
+);
+// Safety fallback
+if (this.index === -1) {
+    this.index = 0;
+}
+console.log("Clicked:", el.getAttribute("data-title"));
+console.log("Found Index:", this.index);
+console.log("Image Count:", this.images.length);
     this.show();
 
     this.modal.classList.remove("hidden");

@@ -25,7 +25,7 @@
  <link rel="canonical" href="https://earnestindiatradingcompany.com/">
  <meta property="og:url" content="https://earnestindiatradingcompany.com/">
 <meta property="og:title" content="Earnest India Trading Company">
-<meta property="og:description" content="35+ Years expertise in textile machinery and industrial bearings.">
+<meta property="og:description" content="30+ Years expertise in textile machinery and industrial bearings.">
 <meta property="og:image" content="https://earnestindiatradingcompany.com/images/eit-logo.svg">
 <meta property="og:type" content="website">
 
@@ -40,7 +40,7 @@
 <link rel="icon" type="image/png" sizes="16x16" href="favicon-16x16.png">
 <link rel="apple-touch-icon" sizes="180x180" href="apple-touch-icon.png">
 
-<meta name="description" content="Earnest India Trading Company - 35+ years expertise in textile machinery spares, used textile machinery and industrial ball bearings in India.">
+<meta name="description" content="Earnest India Trading Company - 30+ years expertise in textile machinery spares, used textile machinery and industrial ball bearings in India.">
 
 <meta name="keywords" content="Textile machinery spares, Open end rotor parts, Used textile machinery, Ball bearings supplier India, Coimbatore textile spares">
 
@@ -1658,7 +1658,7 @@ class="block md:hidden relative overflow-hidden min-h-screen">
 
       <h1 class="text-[52px] font-extrabold text-white leading-[1.05] mb-4">
 
-        35+ Years <br>
+        30+ Years <br>
 
         <span class="text-blue-300">
           of Textile Excellence
@@ -1823,7 +1823,7 @@ bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
         </p>
 
         <h1 class="text-5xl md:text-6xl font-extrabold text-white leading-[1.1] mb-6 tracking-tight drop-shadow-[0_6px_25px_rgba(0,0,0,0.9)]">
-          <span class="text-white">35+ Years</span><br>
+          <span class="text-white">30+ Years</span><br>
           <span class="text-blue-300 drop-shadow-[0_6px_25px_rgba(0,0,0,0.95)]">
             of Textile Excellence
           </span>
@@ -1880,10 +1880,10 @@ bg-gradient-to-r from-black/70 via-black/40 to-transparent"></div>
 <!-- STATS -->
 <section class="bg-white py-16 relative z-30 -mt-0">
 <div class="max-w-6xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center mb-12">
-<div><h3 class="text-4xl font-bold text-blue-600">35+</h3><p>Years Experience</p></div>
-<div><h3 class="text-4xl font-bold text-blue-600">5000+</h3><p>Satisfied Clients</p></div>
-<div><h3 class="text-4xl font-bold text-blue-600">50+</h3><p>Countries Served</p></div>
-<div><h3 class="text-4xl font-bold text-blue-600">1M+</h3><p>Products Delivered</p></div>
+<div><h3 class="text-4xl font-bold text-blue-600">30+</h3><p>Years Experience</p></div>
+<div><h3 class="text-4xl font-bold text-blue-600">500+</h3><p>Satisfied Clients</p></div>
+<div><h3 class="text-4xl font-bold text-blue-600">15+</h3><p>Countries Served</p></div>
+<div><h3 class="text-4xl font-bold text-blue-600">1000+</h3><p>Products Delivered</p></div>
 </div>
 </section>
 
@@ -2320,7 +2320,7 @@ Choose a category and send enquiry instantly
         <li class="flex gap-4">
           <span class="tick-icon">✔</span>
           <div>
-            <h4 class="font-semibold">35+ Years of Industry Experience</h4>
+            <h4 class="font-semibold">30+ Years of Industry Experience</h4>
             <p class="text-gray-500 text-sm">
               Deep expertise in textile machinery and spares built over three decades of dedicated service.
             </p>
@@ -2362,17 +2362,17 @@ Choose a category and send enquiry instantly
     <!-- RIGHT STATS -->
     <div class="grid grid-cols-2 gap-6">
       <div class="bg-gradient-to-br from-blue-500 to-blue-700 text-white p-8 rounded-2xl shadow">
-        <h3 class="text-4xl font-bold">35+</h3>
+        <h3 class="text-4xl font-bold">30+</h3>
         <p class="mt-2">Years of Trust</p>
       </div>
 
       <div class="bg-gray-100 p-8 rounded-2xl shadow">
-        <h3 class="text-4xl font-bold">5000+</h3>
+        <h3 class="text-4xl font-bold">500+</h3>
         <p class="mt-2 text-gray-600">Happy Clients</p>
       </div>
 
       <div class="bg-gray-100 p-8 rounded-2xl shadow">
-        <h3 class="text-4xl font-bold">50+</h3>
+        <h3 class="text-4xl font-bold">15+</h3>
         <p class="mt-2 text-gray-600">Countries</p>
       </div>
 
@@ -3016,6 +3016,8 @@ function showMissingPopup(fields) {
   modal.classList.remove("opacity-0", "pointer-events-none");
   box.classList.remove("scale-90");
 
+lockScroll();
+
   setTimeout(() => {
     box.classList.add("scale-100");
   }, 10);
@@ -3027,7 +3029,7 @@ function closeValidationModal() {
 
   box.classList.remove("scale-100");
   box.classList.add("scale-90");
-
+unlockScroll();
   setTimeout(() => {
     modal.classList.add("opacity-0", "pointer-events-none");
   }, 200);
@@ -3039,6 +3041,7 @@ function closeMissingPopup(){
 
 function closePopup(){
   document.getElementById("successPopup").classList.add("hidden");
+unlockScroll();
 }
 
 window.addEventListener("load", () => {
@@ -3085,7 +3088,7 @@ const box = modal.querySelector("div");
 
 modal.classList.remove("hidden");
 modal.classList.add("flex");
-document.body.classList.add("no-scroll");
+lockScroll();
 
 box.classList.add("modal-open");
 
@@ -3104,7 +3107,7 @@ function closeBrandModal() {
   setTimeout(() => {
     modal.classList.add("hidden");
     box.classList.remove("modal-close");
-    document.body.classList.remove("no-scroll");
+    unlockScroll();
   }, 200);
 }
 
@@ -3202,7 +3205,7 @@ const box = modal.querySelector("div");
 
 modal.classList.remove("hidden");
 modal.classList.add("flex");
-document.body.style.overflow = "hidden";
+lockScroll();
 
 box.classList.add("modal-open");
 
@@ -3309,7 +3312,7 @@ contentBox.appendChild(container);
 
   modal.classList.remove("hidden");
   modal.classList.add("flex");
-  document.body.style.overflow = "hidden";
+  lockScroll();
 
   box.classList.add("modal-open");
 
@@ -3411,7 +3414,7 @@ waBtn.classList.add("flex","items-center","gap-2");
 
   modal.classList.remove("hidden");
   modal.classList.add("flex");
-  document.body.style.overflow = "hidden";
+  lockScroll();
 
   box.classList.add("modal-open");
 
@@ -3522,7 +3525,7 @@ function closeMaterial() {
   setTimeout(() => {
     modal.classList.add("hidden");
     box.classList.remove("modal-close");
-    document.body.style.overflow = "auto"
+    unlockScroll();
   }, 200);
 }
 
@@ -4112,7 +4115,7 @@ function openProduct(name, type){
 <!-- SUCCESS POPUP -->
 <div id="successPopup"
   class="fixed inset-0 bg-black/50 hidden items-center justify-center z-50">
-
+lockScroll();
   <div class="bg-white rounded-xl p-8 text-center animate-pop">
     <h3 class="text-2xl font-bold text-green-600 mb-2">
       Message Ready!
@@ -4356,7 +4359,7 @@ function openImageModal(src) {
 
   modal.classList.remove("hidden");
   modal.classList.add("flex");
-
+lockScroll();
   setTimeout(initZoom, 100); // 🔥 IMPORTANT
 }
 
@@ -4694,8 +4697,52 @@ class="fixed inset-0 z-[999999] hidden bg-black/95 flex items-center justify-cen
 <script>
 feather.replace();
 
+/* ==========================================
+   GLOBAL SCROLL LOCK
+========================================== */
 
+let popupCount = 0;
+let savedScrollY = 0;
 
+function lockScroll() {
+
+    if (popupCount === 0) {
+
+        savedScrollY = window.pageYOffset;
+
+        document.body.style.position = "fixed";
+        document.body.style.top = `-${savedScrollY}px`;
+        document.body.style.left = "0";
+        document.body.style.right = "0";
+        document.body.style.width = "100%";
+    }
+
+    popupCount++;
+}
+
+function unlockScroll() {
+
+    popupCount--;
+
+    if (popupCount > 0) return;
+
+    popupCount = 0;
+
+    const scrollY = Math.abs(parseInt(document.body.style.top || "0"));
+
+    document.body.style.position = "";
+    document.body.style.top = "";
+    document.body.style.left = "";
+    document.body.style.right = "";
+    document.body.style.width = "";
+
+    // Restore instantly
+    window.scrollTo({
+        top: scrollY,
+        left: 0,
+        behavior: "instant"
+    });
+}
 
 
 const vid = document.getElementById("heroVideo");
@@ -4777,7 +4824,7 @@ open(el){
 
     document.getElementById("galleryGridModal").classList.add("hidden");
 
-    document.body.classList.add("gallery-open");
+    lockScroll();
 },
 
  close(){
@@ -4792,7 +4839,7 @@ open(el){
 
     }else{
 
-        document.body.classList.remove("gallery-open");
+        unlockScroll();
 
     }
 
@@ -4851,7 +4898,7 @@ openAll(){
         .getElementById("galleryGridModal")
         .classList.remove("hidden");
 
-    document.body.classList.add("gallery-open");
+    lockScroll();
 
 }
 
@@ -4867,7 +4914,7 @@ document
 .getElementById("galleryGridModal")
 .classList.add("hidden");
 
-document.body.classList.remove("gallery-open");
+unlockScroll();
 
 };
 
@@ -4876,6 +4923,7 @@ document.getElementById("galleryGridClose").onclick = () => {
     document
         .getElementById("galleryGridModal")
         .classList.add("hidden");
+        unlockScroll();
 
 };
 

@@ -5032,6 +5032,23 @@ document.addEventListener("keydown",(e)=>{
 
 
 const galleryImage = document.getElementById("galleryImage");
+	
+galleryImage.addEventListener("wheel", function(e){
+
+    e.preventDefault();
+
+    if(e.deltaY < 0){
+        zoom += 0.15;
+    }else{
+        zoom -= 0.15;
+    }
+
+    zoom = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, zoom));
+
+    galleryImage.style.transform =
+        `translate(${translateX}px, ${translateY}px) scale(${zoom})`;
+
+},{ passive:false });
 
 
 galleryImage.addEventListener("mousedown", function(e){

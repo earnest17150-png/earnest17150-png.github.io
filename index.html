@@ -4797,9 +4797,13 @@ function resetZoom(){
 
     zoom = 1;
 
+    translateX = 0;
+    translateY = 0;
+
     const img = document.getElementById("galleryImage");
 
-    img.style.transform = "scale(1)";
+    img.style.transform =
+        `translate(0px,0px) scale(1)`;
 }
 
 
@@ -4807,6 +4811,16 @@ function resetZoom(){
 /* ===========================
    GALLERY ENGINE - PART 3A
 =========================== */
+// ===== Image Pan Variables =====
+
+let translateX = 0;
+let translateY = 0;
+
+let isDragging = false;
+
+let dragStartX = 0;
+let dragStartY = 0;
+
 
 const gallery = {
 
@@ -5026,28 +5040,41 @@ document.addEventListener("keydown",(e)=>{
 
 const galleryImage = document.getElementById("galleryImage");
 
-galleryImage.addEventListener("wheel",function(e){
 
-    e.preventDefault();
+galleryImage.addEventListener("mousedown", function(e){
 
-    if(e.deltaY < 0){
+    if(zoom <= 1) return;
 
-        zoom += 0.15;
+    isDragging = true;
 
-    }else{
+    dragStartX = e.clientX - translateX;
+    dragStartY = e.clientY - translateY;
 
-        zoom -= 0.2;
+    galleryImage.style.cursor = "grabbing";
 
-    }
+});
 
-    zoom = Math.max(MIN_ZOOM,Math.min(MAX_ZOOM,zoom));
+window.addEventListener("mousemove", function(e){
+
+    if(!isDragging) return;
+
+    translateX = e.clientX - dragStartX;
+    translateY = e.clientY - dragStartY;
 
     galleryImage.style.transform =
-        `scale(${zoom})`;
+`translate(${translateX}px, ${translateY}px) scale(${zoom})`;
 
-},{passive:false});
+});
 
+window.addEventListener("mouseup", function(){
 
+    if(!isDragging) return;
+
+    isDragging = false;
+
+    galleryImage.style.cursor = "grab";
+
+});
 let pinchStart = 0;
 
 galleryImage.addEventListener("touchstart",function(e){
@@ -5085,7 +5112,7 @@ galleryImage.addEventListener("touchmove",function(e){
     zoom = Math.max(MIN_ZOOM,Math.min(MAX_ZOOM,zoom));
 
     galleryImage.style.transform =
-        `scale(${zoom})`;
+`translate(${translateX}px, ${translateY}px) scale(${zoom})`;
 
     pinchStart=current;
 
@@ -5094,9 +5121,6 @@ galleryImage.addEventListener("touchmove",function(e){
 
 </script>
 
-<!-- =========================
-     IMAGE PREVIEW MODAL
-========================= -->
 
 
 </body>

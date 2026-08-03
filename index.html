@@ -4747,7 +4747,6 @@ function unlockScroll() {
     document.body.style.right = "";
     document.body.style.width = "";
 
-    // Restore instantly
     window.scrollTo({
         top: scrollY,
         left: 0,
@@ -4860,6 +4859,7 @@ open(el){
     this.index = this.images.findIndex(img =>
     img.getAttribute("data-title") === el.getAttribute("data-title")
 );
+
 // Safety fallback
 if (this.index < 0) {
     console.warn("Gallery image not found:", el.getAttribute("data-title"));
@@ -4871,14 +4871,16 @@ console.log("Found Index:", this.index);
 console.log("Image Count:", this.images.length);
     this.show();
 
-    this.modal.classList.remove("hidden");
+this.modal.classList.remove("hidden");
 
-    document.getElementById("galleryGridModal").classList.add("hidden");
+document.getElementById("galleryGridModal").classList.add("hidden");
 
+if(!this.fromGrid){
     lockScroll();
+}
 },
 
- close(){
+close(){
 
     this.modal.classList.add("hidden");
 
@@ -4887,6 +4889,8 @@ console.log("Image Count:", this.images.length);
         document
             .getElementById("galleryGridModal")
             .classList.remove("hidden");
+
+        // DO NOTHING HERE
 
     }else{
 
@@ -4957,17 +4961,6 @@ openAll(){
 
 
 document.getElementById("exploreAllBtn").onclick = () => gallery.openAll();
-document
-.getElementById("galleryGridClose")
-.onclick = ()=>{
-
-document
-.getElementById("galleryGridModal")
-.classList.add("hidden");
-
-unlockScroll();
-
-};
 
 document.getElementById("galleryGridClose").onclick = () => {
 

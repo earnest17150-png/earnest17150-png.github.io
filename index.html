@@ -5045,6 +5045,11 @@ galleryImage.addEventListener("wheel", function(e){
 
     zoom = Math.max(MIN_ZOOM, Math.min(MAX_ZOOM, zoom));
 
+if (zoom <= 1) {
+    zoom = 1;
+    translateX = 0;
+    translateY = 0;
+}
     galleryImage.style.transform =
         `translate(${translateX}px, ${translateY}px) scale(${zoom})`;
 
@@ -5087,6 +5092,7 @@ window.addEventListener("mouseup", function(){
 });
 let pinchStart = 0;
 
+
 galleryImage.addEventListener("touchstart",function(e){
 
     if(e.touches.length !== 2) return;
@@ -5120,7 +5126,11 @@ galleryImage.addEventListener("touchmove",function(e){
     zoom *= change;
 
     zoom = Math.max(MIN_ZOOM,Math.min(MAX_ZOOM,zoom));
-
+    if (zoom <= 1) {
+    zoom = 1;
+    translateX = 0;
+    translateY = 0;
+}
     galleryImage.style.transform =
 `translate(${translateX}px, ${translateY}px) scale(${zoom})`;
 
